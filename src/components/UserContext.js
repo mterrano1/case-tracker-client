@@ -29,12 +29,18 @@ const UserProvider = (props) => {
         setLoggedIn(true)
     }
 
+    const logout = () => {
+        setUser({})
+        setLoggedIn(false)
+    }
+
     return (
         <UserContext.Provider value={{
             user,
             loggedIn,
             signup,
-            login
+            login,
+            logout
         }}>
             {props.children}
         </UserContext.Provider>
