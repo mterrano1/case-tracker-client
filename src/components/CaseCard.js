@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 const CaseCard = ({ userCase }) => {
-    const {id, allegation_type, department, status, datetime} = userCase
+    const {id, allegation_type, department, status, days_ago} = userCase
 
 
     return (
@@ -12,7 +12,7 @@ const CaseCard = ({ userCase }) => {
                 <p>{allegation_type}</p>
                 <p>{department}</p>
                 <p>{status}</p>
-                <p>{datetime}</p>
+                <p>{days_ago}</p>
             </Link>
         </li>
     )
