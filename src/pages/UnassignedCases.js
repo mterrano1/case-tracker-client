@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
 import { UserContext } from '../components/UserContext';
+import CaseCard from '../components/CaseCard';
+
 
 const UnassignedCases = () => {
-    const {user, loggedIn} = useContext(UserContext);
+    const {user, loggedIn, userCases} = useContext(UserContext);
 
     if (loggedIn && user.role === 'Manager') {
         return (
             <div>
                 <h1>UnassignedCases Page</h1>
+                <ul>
+                    {userCases.map((userCase) => (
+                        <CaseCard key={userCase.id} userCase={userCase} />
+                    ))}
+                </ul>
             </div>
         )
     } else {
