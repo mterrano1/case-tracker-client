@@ -42,6 +42,12 @@ const UserProvider = (props) => {
         setUserCases(updatedUserCases)
     }
 
+    const handleCaseStatusUpdate = (updatedCase) => {
+        // const caseUpdate = userCases.map(userCase => userCase.id === updatedCase.id ? updatedCase : userCase)
+        const caseUpdate = userCases.map(userCase => userCase.id === updatedCase['id'] ? updatedCase : userCase)
+        setUserCases(caseUpdate)
+    }
+
     return (
         <UserContext.Provider value={{
             user,
@@ -50,7 +56,8 @@ const UserProvider = (props) => {
             login,
             logout,
             userCases,
-            handleDeleteCase
+            handleDeleteCase,
+            handleCaseStatusUpdate
         }}>
             {props.children}
         </UserContext.Provider>

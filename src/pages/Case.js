@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../components/UserContext';
 import DeleteCaseButton from '../components/DeleteCaseButton';
+import CaseAssignmentForm from '../components/CaseAssignmentForm';
 
 
 const Case = () => {
@@ -17,7 +18,9 @@ const Case = () => {
             <p>{displayedCase.department}</p>
             <p>{displayedCase.status}</p>
             <p>{displayedCase.resolution}</p>
-            <p>{displayedCase.datetime}</p>
+            {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id}/> : ''}
+            {user.role === 'Manager' && displayedCase.status === "Unassigned" ?
+            <CaseAssignmentForm caseId={displayedCase.id}/> : ''}
             {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id}/> : <p>Not a Manager</p>}
         </div>
     ))
