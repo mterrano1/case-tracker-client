@@ -19,6 +19,10 @@ const Reports = () => {
         return (
             <div>
                 <h1>Reports Page</h1>
+                <p>Customer service complaints: {allCases['Customer service']}</p>
+                <p>Fee's complaints: {allCases['Fees']}</p>
+                <p>Discrimination complaints: {allCases['Discrimination']}</p>
+                <p>Unauthorized account complaints: {allCases['Unauthorized account']}</p>
             </div>
         )
     } else {
