@@ -6,7 +6,7 @@ import CaseCard from '../components/CaseCard';
 const Cases = () => {
     const {user, loggedIn, userCases} = useContext(UserContext);
 
-    if (loggedIn && user.role === 'Manager') {
+    if (loggedIn) {
         return (
             <div>
                 <h1>UnassignedCases Page</h1>

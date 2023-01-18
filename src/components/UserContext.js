@@ -37,6 +37,11 @@ const UserProvider = (props) => {
         setLoggedIn(false)
     }
 
+    const handleDeleteCase = (deletedCaseId) => {
+        const updatedUserCases = userCases.filter((userCase) => userCase.id !== deletedCaseId)
+        setUserCases(updatedUserCases)
+    }
+
     return (
         <UserContext.Provider value={{
             user,
@@ -44,7 +49,8 @@ const UserProvider = (props) => {
             signup,
             login,
             logout,
-            userCases
+            userCases,
+            handleDeleteCase
         }}>
             {props.children}
         </UserContext.Provider>

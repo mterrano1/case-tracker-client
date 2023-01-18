@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 const CaseCard = ({ userCase }) => {
     const {id, allegation_type, department, status, datetime} = userCase
 
-    console.log(userCase)
-
 
     return (
 
