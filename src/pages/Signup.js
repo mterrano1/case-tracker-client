@@ -31,8 +31,7 @@ const Signup = () => {
         .then(user => {
             if (!user.errors) {
                 signup(user)
-                navigate(`/${user.role}Dashboard`)
-                // navigate('/')
+                navigate('/')
             } else {
                 setFirstname('')
                 setLastname('')

@@ -9,13 +9,29 @@ const NavBar = () => {
 
     const button = loggedIn ? <LogoutButton /> : <LoginButton />
 
+    const homeLink = user.role !== 'Customer' ?
+        <NavLink exact to='/'>Home</NavLink> :
+        <NavLink exact to='/CustomerDashboard'>Home</NavLink>
+
+    const dashboardLink = user.role !== 'Customer' && loggedIn ?
+        <NavLink exact to={loggedIn ? `/${user.role}Dashboard` : '/Login'}>Dashboard</NavLink> :
+        ''
+
+    const casesLink = user.role !== 'Customer' && loggedIn ? 
+        <NavLink exact to='/cases'>Cases</NavLink> :
+        ''
+
+    const reportsLink = user.role === 'Manager' && loggedIn ?
+        <NavLink exact to='/reports'>Reports</NavLink> :
+        ''
+
     return (
         <nav>
-            <NavLink exact to='/'>Home</NavLink>
-            <NavLink exact to={loggedIn ? `/${user.role}Dashboard` : '/Login'}>Dashboard</NavLink>
-            <NavLink exact to='/cases'>Cases</NavLink>
+            {homeLink}
+            {dashboardLink}
+            {casesLink}
+            {reportsLink}
             <NavLink exact to='/login'>{button}</NavLink>
-            {/* {button} */}
         </nav>
     );
 }
