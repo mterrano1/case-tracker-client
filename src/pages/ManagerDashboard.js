@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import { UserContext } from '../components/UserContext';
 
 const ManagerDashboard = () => {
-    const {user, loggedIn} = useContext(UserContext);
+    const {user, loggedIn, userCases} = useContext(UserContext);
+
+    console.log(userCases)
 
     if (loggedIn && user.role === 'Manager') {
         return (

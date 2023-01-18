@@ -4,6 +4,7 @@ const UserContext = React.createContext();
 const UserProvider = (props) => {
     const [user, setUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
+    const [userCases, setUserCases] = useState([]);
 
     useEffect(() => {
         //Auto-login
@@ -13,7 +14,7 @@ const UserProvider = (props) => {
             if (!data.errors){
                 setLoggedIn(true)
                 setUser(data)
-                console.log(data)
+                setUserCases(data.assigned_cases)
             } else {
                 setLoggedIn(false)
             }
@@ -28,6 +29,7 @@ const UserProvider = (props) => {
     const login = (user) => {
         setUser(user)
         setLoggedIn(true)
+        setUserCases(user.assigned_cases)
     }
 
     const logout = () => {
@@ -41,8 +43,8 @@ const UserProvider = (props) => {
             loggedIn,
             signup,
             login,
-            logout
-            // dashboardNavigation
+            logout,
+            userCases
         }}>
             {props.children}
         </UserContext.Provider>
