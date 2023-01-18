@@ -5,10 +5,13 @@ import { UserProvider } from './UserContext';
 import Home from '../pages/Home';
 import Signup from '../pages/Signup';
 import Login from '../pages/Login';
+import NavBar from './NavBar';
+
 
 function App() {
   return (
     <UserProvider>
+      <NavBar />
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/signup' element={<Signup />} />

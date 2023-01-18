@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { UserContext } from '../components/UserContext';
 
 const Home = () => {
-    return (
-        <div>
-            <h1>Home Page</h1>
-        </div>
-    )
+    const {user, loggedIn} = useContext(UserContext);
+
+    if (loggedIn) {
+        return (
+            <div>
+                <h1>{user.first_name}'s Dashboard</h1>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <h1>Please login or signup</h1>
+            </div>
+        )
+    }
 }
 
 export default Home;
