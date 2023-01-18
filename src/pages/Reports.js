@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from '../components/UserContext';
+import CaseTypeStats from '../components/CaseTypeStats';
+import CaseDepartmentStats from '../components/CaseDepartmentStats';
 
 const Reports = () => {
     const {user, loggedIn} = useContext(UserContext);
-    const [allCases, setAllCases] = useState([]);
+    const [allCases, setAllCases] = useState({});
 
     useEffect(() => {
         fetch('/cases')
@@ -18,11 +20,8 @@ const Reports = () => {
     } else if (loggedIn && user.role === 'Manager') {
         return (
             <div>
-                <h1>Reports Page</h1>
-                <p>Customer service complaints: {allCases['Customer service']}</p>
-                <p>Fee's complaints: {allCases['Fees']}</p>
-                <p>Discrimination complaints: {allCases['Discrimination']}</p>
-                <p>Unauthorized account complaints: {allCases['Unauthorized account']}</p>
+                <CaseTypeStats allCases={allCases.cases_by_allegation_type} />
+                <CaseDepartmentStats allCases={allCases.cases_by_department} />
             </div>
         )
     } else {
