@@ -1,10 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from '../components/UserContext';
 
 const Reports = () => {
     const {user, loggedIn} = useContext(UserContext);
+    const [allCases, setAllCases] = useState([]);
 
-    if (loggedIn && user.role === 'Manager') {
+    useEffect(() => {
+        fetch('/cases')
+        .then(r => r.json())
+        .then(data => setAllCases(data))
+    }, []);
+
+    if (!allCases) {
+        return (
+            <h1>Loading...</h1>
+        )
+    } else if (loggedIn && user.role === 'Manager') {
         return (
             <div>
                 <h1>Reports Page</h1>

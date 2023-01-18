@@ -6,9 +6,10 @@ const Home = () => {
     const {user, loggedIn} = useContext(UserContext);
 
     if (loggedIn && user.role === 'Manager') {
+
         return (
             <div>
-                <h1>{user.role}'s Home Dashboard</h1>
+                <h1>Welcome back {user.first_name}!</h1>
                 <Link to={'/managerdashboard'}>
                     <button>My Dashboard</button>
                 </Link>
@@ -20,7 +21,7 @@ const Home = () => {
     } else if (loggedIn && user.role === 'Researcher') {
         return (
             <div>
-                <h1>{user.role}'s Home Dashboard</h1>
+                <h1>Welcome back {user.first_name}!</h1>
                 <Link to={'/researcherdashboard'}>
                     <button>My Dashboard</button>
                 </Link>
@@ -29,7 +30,7 @@ const Home = () => {
     } else if (loggedIn && user.role === 'Customer') {
         return (
             <div>
-                <h1>{user.role}'s Home Dashboard</h1>
+                <h4>Hello {user.first_name}, we appreciate your feedback!</h4>
                 <Link to={'/customerdashboard'}>
                     <button>File a complaint</button>
                 </Link>
