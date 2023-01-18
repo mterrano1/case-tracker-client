@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from '../components/UserContext';
 
 const ResearcherDashboard = () => {
-    const {user, loggedIn, userCases} = useContext(UserContext);
+    const {user, loggedIn} = useContext(UserContext);
 
 
     if (loggedIn && user.role === 'Researcher') {

@@ -3,29 +3,24 @@ import { UserContext } from '../components/UserContext';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
-    const [firstname, setFirstname] = useState('');
-    const [lastname, setLastname] = useState('');
-    const [role, setRole] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordConfirmation, setPasswordConfirmation] = useState('');
-    const [errorsList, setErrorsList] = useState([]);
     const { signup } = useContext(UserContext);
     const navigate = useNavigate();
+    const [errorsList, setErrorsList] = useState([]);
+    const [newUser, setNewUser] = useState({
+        first_name: '',
+        last_name: '',
+        role: '',
+        username: '',
+        password: '',
+        password_confirmation: ''     
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('/signup', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                first_name: firstname,
-                last_name: lastname,
-                role,
-                username,
-                password,
-                password_confirmation: passwordConfirmation,
-            }),
+            body: JSON.stringify(newUser),
         })
         .then(r => r.json())
         .then(user => {
@@ -33,63 +28,45 @@ const Signup = () => {
                 signup(user)
                 navigate('/')
             } else {
-                setFirstname('')
-                setLastname('')
-                setRole('')
-                setUsername('')
-                setPassword('')
-                setPasswordConfirmation('')
                 const errors = user.errors.map(e => <li>{e}</li>)
                 setErrorsList(errors)
             }
         })
     }
 
+    const handleChange = (e) => {
+        setNewUser({
+            ...newUser, [e.target.name]: e.target.value
+        })
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <label>Firstname:</label>
-                <input
-                    type='text'
-                    id='first_name'
-                    value={firstname}
-                    onChange={e => setFirstname(e.target.value)}
-                /> <br/> <br/>
-                <label>Lastname:</label>
-                <input
-                    type='text'
-                    id='last_name'
-                    value={lastname}
-                    onChange={e => setLastname(e.target.value)}
-                /> <br/> <br/>
-                <label>Role:</label>
-                <input
-                    type='text'
-                    id='role'
-                    value={role}
-                    onChange={e => setRole(e.target.value)}
-                /> <br/> <br/>
-                <label>Username:</label>
-                <input
-                    type='text'
-                    id='username'
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                /> <br/> <br/>
-                <label>Password:</label>
-                <input
-                    type='password'
-                    id='password'
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                /> <br/> <br/>
-                <label>Confirm Password:</label>
-                <input
-                    type='password'
-                    id='password_confirmation'
-                    value={passwordConfirmation}
-                    onChange={e => setPasswordConfirmation(e.target.value)}
-                /> <br/> <br/>
+            <label>Firstname</label><br/>
+                <input type='text' name='first_name' onChange={handleChange}/>
+                <br/><br/>
+                <label>Lastname</label><br/>
+                <input type='text' name='last_name' onChange={handleChange}/>
+                <br/><br/>
+                Role
+                <br/>
+                <select name='role' onChange={handleChange}>
+                    <option></option>
+                    <option>Customer</option>
+                    <option>Researcher</option>
+                    <option>Manager</option>
+                </select>
+                <br/><br/>
+                <label>Username</label><br/>
+                <input type='text' name='username' onChange={handleChange}/>
+                <br/><br/>
+                <label>Password</label><br/>
+                <input type='password' name='password' onChange={handleChange}/>
+                <br/><br/>
+                <label>Confirm Password</label><br/>
+                <input type='password' name='password_confirmation' onChange={handleChange}/>
+                <br/><br/>
                 <button type='submit'>Submit</button>
                 <br/>
                 <ul style={{ color: 'red' }}>

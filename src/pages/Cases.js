@@ -4,7 +4,7 @@ import CaseCard from '../components/CaseCard';
 
 
 const Cases = () => {
-    const {user, loggedIn, userCases} = useContext(UserContext);
+    const {loggedIn, userCases} = useContext(UserContext);
 
     if (loggedIn) {
         return (

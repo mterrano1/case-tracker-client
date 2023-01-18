@@ -42,7 +42,8 @@ const CustomerDashboard = () => {
         return (
             <div>
                 <form onSubmit={handleSubmit}>
-                Complaint Type <br/>
+                    Complaint Type
+                    <br/>
                     <select name='allegation_type' onChange={handleChange}>
                         <option></option>
                         <option>Customer service</option>
@@ -51,12 +52,9 @@ const CustomerDashboard = () => {
                         <option>Unauthorized account</option>
                     </select><br/><br/>
                     <label>Description</label><br/>
-                    <input
-                        type='text'
-                        name='allegation'
-                        onChange={handleChange}
-                    /> <br/> <br/>
-                    Department <br/>
+                    <input type='text' name='allegation' onChange={handleChange}/><br/><br/>
+                    Department
+                    <br/>
                     <select name='department' onChange={handleChange}>
                         <option></option>
                         <option>Local Branch</option>
