@@ -8,7 +8,7 @@ const CaseCard = ({ userCase }) => {
     return (
 
         <li>
-            <Link to={`/Cases/${id}`}>
+            <Link to={`/cases/${id}`}>
                 <p>{allegation_type}</p>
                 <p>{department}</p>
                 <p>{status}</p>
