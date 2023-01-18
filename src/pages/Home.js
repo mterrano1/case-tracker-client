@@ -7,19 +7,19 @@ const Home = () => {
     if (loggedIn && user.role === 'Manager') {
         return (
             <div>
-                <h1>{user.role}'s Dashboard</h1>
+                <h1>{user.role}'s Home Dashboard</h1>
             </div>
         )
     } else if (loggedIn && user.role === 'Researcher') {
         return (
             <div>
-                <h1>{user.role}'s Dashboard</h1>
+                 <h1>{user.role}'s Home Dashboard</h1>
             </div>
         )
     } else if (loggedIn && user.role === 'Customer') {
         return (
             <div>
-                <h1>{user.role}'s Dashboard</h1>
+                 <h1>{user.role}'s Home Dashboard</h1>
             </div>
         )
     } else {

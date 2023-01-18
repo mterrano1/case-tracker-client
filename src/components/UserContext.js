@@ -41,6 +41,7 @@ const UserProvider = (props) => {
             signup,
             login,
             logout
+            // dashboardNavigation
         }}>
             {props.children}
         </UserContext.Provider>

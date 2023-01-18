@@ -7,6 +7,7 @@ const ResearcherDashboard = () => {
     if (loggedIn && user.role === 'Researcher') {
         return (
             <div>
+                <h1>Researcher Dashboard</h1>
             </div>
         )
     } else {

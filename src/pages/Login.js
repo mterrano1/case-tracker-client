@@ -21,7 +21,9 @@ const Login = () => {
         .then(user => {
             if (!user.error){
                 login(user)
-                navigate('/')
+                // interpolate which dashboard to navigate to based on users role
+                navigate(`/${user.role}Dashboard`)
+                // navigate('/')
             } else {
                 setUsername('')
                 setPassword('')

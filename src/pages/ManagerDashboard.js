@@ -7,6 +7,7 @@ const ManagerDashboard = () => {
     if (loggedIn && user.role === 'Manager') {
         return (
             <div>
+                <h1>Manager Dashboard</h1>
             </div>
         )
     } else {

@@ -12,7 +12,7 @@ const LogoutButton = () => {
         })
         .then(() => {
             logout()
-            navigate('/')
+            navigate('/Login')
         })
 
     }
