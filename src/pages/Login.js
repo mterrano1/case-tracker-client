@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from '../components/UserContext';
 import { useNavigate } from 'react-router-dom';
+import SignupButton from '../components/SignupButton';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -47,6 +48,8 @@ const Login = () => {
                     onChange={e => setPassword(e.target.value)}
                 /> <br/> <br/>
                 <button type='submit'>Login</button>
+                <SignupButton />
+                <br/> <br/>
                 <p style={{ color: 'red' }}>{errors}</p>
             </form>
         </div>
