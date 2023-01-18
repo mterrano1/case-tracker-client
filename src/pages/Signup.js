@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from "react";
+import { UserContext } from '../components/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const [firstname, setFirstname] = useState('');
@@ -7,6 +9,8 @@ const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const { signup } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,7 +28,17 @@ const Signup = () => {
         })
         .then(r => r.json())
         .then(user => {
-            console.log(user)
+            if (!user.errors) {
+                signup(user)
+                navigate('/')
+            } else {
+                setFirstname('')
+                setLastname('')
+                setRole('')
+                setUsername('')
+                setPassword('')
+                setPasswordConfirmation('')
+            }
         })
     }
 
