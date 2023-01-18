@@ -43,7 +43,6 @@ const UserProvider = (props) => {
     }
 
     const handleCaseStatusUpdate = (updatedCase) => {
-        // const caseUpdate = userCases.map(userCase => userCase.id === updatedCase.id ? updatedCase : userCase)
         const caseUpdate = userCases.map(userCase => userCase.id === updatedCase['id'] ? updatedCase : userCase)
         setUserCases(caseUpdate)
     }

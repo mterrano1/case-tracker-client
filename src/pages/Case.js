@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { UserContext } from '../components/UserContext';
 import DeleteCaseButton from '../components/DeleteCaseButton';
 import CaseAssignmentForm from '../components/CaseAssignmentForm';
+import CloseCaseForm from '../components/CloseCaseForm';
 
 
 const Case = () => {
@@ -13,15 +14,17 @@ const Case = () => {
 
     const displayedCases = filterCase.map(displayedCase => (
         <div key={displayedCase.id} >
-            <p>{displayedCase.allegation_type}</p>
-            <p>{displayedCase.allegation}</p>
-            <p>{displayedCase.department}</p>
-            <p>{displayedCase.status}</p>
-            <p>{displayedCase.resolution}</p>
+            <p>Created: {displayedCase.datetime}</p>
+            <p>Type: {displayedCase.allegation_type}</p>
+            <p>Complaint: {displayedCase.allegation}</p>
+            <p>Department: {displayedCase.department}</p>
+            <p>Status: {displayedCase.status}</p>
+            {displayedCase.status === 'Closed' ? <p>Resolution: {displayedCase.resolution}</p> : null}
             {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id}/> : ''}
             {user.role === 'Manager' && displayedCase.status === "Unassigned" ?
-            <CaseAssignmentForm caseId={displayedCase.id}/> : ''}
-            {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id}/> : <p>Not a Manager</p>}
+            <CaseAssignmentForm caseId={displayedCase.id}/> : null}
+            {user.role === 'Researcher' && displayedCase.status === "Open" ? 
+            <CloseCaseForm caseId={displayedCase.id}/> : null}
         </div>
     ))
 

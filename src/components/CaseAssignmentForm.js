@@ -20,8 +20,7 @@ const CaseAssignmentForm = ({ caseId }) => {
 
   const handleChange = (e) => {
     setCaseAssignment({
-      ...caseAssignment,
-      [e.target.name]: e.target.value,
+        ...caseAssignment, [e.target.name]: e.target.value,
     });
   };
 
