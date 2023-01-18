@@ -14,8 +14,8 @@ const Signup = () => {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-                firstname,
-                lastname,
+                first_name: firstname,
+                last_name: lastname,
                 role,
                 username,
                 password,
@@ -34,14 +34,14 @@ const Signup = () => {
                 <label>Firstname:</label>
                 <input
                     type='text'
-                    id='firstname'
+                    id='first_name'
                     value={firstname}
                     onChange={e => setFirstname(e.target.value)}
                 /> <br/> <br/>
                 <label>Lastname:</label>
                 <input
                     type='text'
-                    id='lastname'
+                    id='last_name'
                     value={lastname}
                     onChange={e => setLastname(e.target.value)}
                 /> <br/> <br/>
