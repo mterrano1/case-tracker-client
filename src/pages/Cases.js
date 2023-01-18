@@ -3,7 +3,7 @@ import { UserContext } from '../components/UserContext';
 import CaseCard from '../components/CaseCard';
 
 
-const UnassignedCases = () => {
+const Cases = () => {
     const {user, loggedIn, userCases} = useContext(UserContext);
 
     if (loggedIn && user.role === 'Manager') {
@@ -24,4 +24,4 @@ const UnassignedCases = () => {
     }
 }
 
-export default UnassignedCases;
+export default Cases;
