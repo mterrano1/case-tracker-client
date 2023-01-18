@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from '../components/UserContext';
 
-const ManagerDashboard = () => {
-    const {user, loggedIn, userCases} = useContext(UserContext);
+const Reports = () => {
+    const {user, loggedIn} = useContext(UserContext);
 
     if (loggedIn && user.role === 'Manager') {
         return (
             <div>
-                <h1>Manager Dashboard</h1>
+                <h1>Reports Page</h1>
             </div>
         )
     } else {
@@ -17,4 +17,4 @@ const ManagerDashboard = () => {
     }
 }
 
-export default ManagerDashboard;
+export default Reports;

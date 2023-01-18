@@ -11,6 +11,7 @@ import ResearcherDashboard from '../pages/ResearcherDashboard';
 import CustomerDashboard from '../pages/CustomerDashboard';
 import Cases from '../pages/Cases';
 import Case from '../pages/Case';
+import Reports from '../pages/Reports';
 
 
 function App() {
@@ -20,11 +21,12 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route exact path='/ManagerDashboard' element={<ManagerDashboard />} />
-        <Route exact path='/ResearcherDashboard' element={<ResearcherDashboard />} />
-        <Route exact path='/CustomerDashboard' element={<CustomerDashboard />} />
-        <Route exact path='/Cases' element={<Cases />} />
-        <Route exact path='/Cases/:id' element={<Case />} />
+        <Route exact path='/managerdashboard' element={<ManagerDashboard />} />
+        <Route exact path='/researcherdashboard' element={<ResearcherDashboard />} />
+        <Route exact path='/customerdashboard' element={<CustomerDashboard />} />
+        <Route exact path='/cases' element={<Cases />} />
+        <Route exact path='/reports' element={<Reports />} />
+        <Route exact path='/cases/:id' element={<Case />} />
         <Route exact path='/signup' element={<Signup />} />
         <Route exact path='/login' element={<Login />} />
       </Routes>

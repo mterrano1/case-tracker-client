@@ -17,6 +17,7 @@ const Case = () => {
             <p>{displayedCase.department}</p>
             <p>{displayedCase.status}</p>
             <p>{displayedCase.resolution}</p>
+            <p>{displayedCase.datetime}</p>
             {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id}/> : <p>Not a Manager</p>}
         </div>
     ))

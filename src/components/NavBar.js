@@ -13,7 +13,8 @@ const NavBar = () => {
         <nav>
             <NavLink exact to='/'>Home</NavLink>
             <NavLink exact to={loggedIn ? `/${user.role}Dashboard` : '/Login'}>Dashboard</NavLink>
-            <NavLink exact to='/Login'>{button}</NavLink>
+            <NavLink exact to='/cases'>Cases</NavLink>
+            <NavLink exact to='/login'>{button}</NavLink>
             {/* {button} */}
         </nav>
     );
