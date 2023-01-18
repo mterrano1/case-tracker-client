@@ -7,6 +7,7 @@ import Signup from '../pages/Signup';
 import Login from '../pages/Login';
 import NavBar from './NavBar';
 import ManagerDashboard from '../pages/ManagerDashboard';
+import UnassignedCases from '../pages/UnassignedCases';
 import ResearcherDashboard from '../pages/ResearcherDashboard';
 import CustomerDashboard from '../pages/CustomerDashboard';
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route exact path='/ManagerDashboard' element={<ManagerDashboard />} />
+        <Route exact path='/UnassignedCases' element={<UnassignedCases />} />
         <Route exact path='/ResearcherDashboard' element={<ResearcherDashboard />} />
         <Route exact path='/CustomerDashboard' element={<CustomerDashboard />} />
         <Route exact path='/signup' element={<Signup />} />

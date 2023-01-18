@@ -13,6 +13,7 @@ const UserProvider = (props) => {
             if (!data.errors){
                 setLoggedIn(true)
                 setUser(data)
+                console.log(data)
             } else {
                 setLoggedIn(false)
             }
