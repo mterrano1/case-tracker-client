@@ -9,6 +9,7 @@ const Signup = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const [errorsList, setErrorsList] = useState([]);
     const { signup } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -38,6 +39,8 @@ const Signup = () => {
                 setUsername('')
                 setPassword('')
                 setPasswordConfirmation('')
+                const errors = user.errors.map(e => <li>{e}</li>)
+                setErrorsList(errors)
             }
         })
     }
@@ -89,6 +92,9 @@ const Signup = () => {
                 /> <br/> <br/>
                 <button type='submit'>Submit</button>
                 <br/>
+                <ul style={{ color: 'red' }}>
+                    {errorsList}
+                </ul>
             </form>
         </div>
     )

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState('');
     const { login } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -23,6 +24,7 @@ const Login = () => {
             } else {
                 setUsername('')
                 setPassword('')
+                setErrors(user.error)
             }
         })
     }
@@ -45,6 +47,7 @@ const Login = () => {
                     onChange={e => setPassword(e.target.value)}
                 /> <br/> <br/>
                 <button type='submit'>Login</button>
+                <p style={{ color: 'red' }}>{errors}</p>
             </form>
         </div>
     )

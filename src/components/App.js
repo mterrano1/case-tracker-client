@@ -8,15 +8,13 @@ import Login from '../pages/Login';
 
 function App() {
   return (
-    <Routes>
-      <UserProvider>
-        <Routes>
-          <Route exact path='/' element={<Home />} />
-          <Route exact path='/signup' element={<Signup />} />
-          <Route exact path='/login' element={<Login />} />
-        </Routes>
+    <UserProvider>
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='/signup' element={<Signup />} />
+        <Route exact path='/login' element={<Login />} />
+      </Routes>
     </UserProvider>
-    </Routes>
   );
 }
 
