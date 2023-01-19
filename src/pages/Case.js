@@ -4,6 +4,7 @@ import { UserContext } from '../components/UserContext';
 import DeleteCaseButton from '../components/DeleteCaseButton';
 import CaseAssignmentForm from '../components/CaseAssignmentForm';
 import CloseCaseForm from '../components/CloseCaseForm';
+import CommentForm from '../components/CommentForm';
 
 
 const Case = () => {
@@ -25,6 +26,7 @@ const Case = () => {
             <CaseAssignmentForm caseId={displayedCase.id}/> : null}
             {user.role === 'Researcher' && displayedCase.status === "Open" ? 
             <CloseCaseForm caseId={displayedCase.id}/> : null}
+            <CommentForm caseId={displayedCase.id} user={user}/>
         </div>
     ))
 
