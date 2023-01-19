@@ -7,7 +7,7 @@ const ManagerDashboard = () => {
     const [userList, setuserList] = useState([]);
 
     useEffect(() => {
-        fetch('/users')
+        fetch('http://localhost:3000/users')
         .then(r => r.json())
         .then(data => setuserList(data))
     }, []);

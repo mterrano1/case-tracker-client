@@ -8,7 +8,7 @@ const Reports = () => {
     const [allCases, setAllCases] = useState({});
 
     useEffect(() => {
-        fetch('/cases')
+        fetch('http://localhost:3000/cases')
         .then(r => r.json())
         .then(data => setAllCases(data))
     }, []);

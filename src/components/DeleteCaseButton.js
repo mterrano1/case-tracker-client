@@ -7,7 +7,7 @@ const DeleteCaseButton = ({ caseId }) => {
     const navigate = useNavigate();
 
     const deleteCase = () => {
-        fetch(`/cases/${caseId}`, {
+        fetch(`http://localhost:3000/cases/${caseId}`, {
             method: "DELETE",
         })
         .then(() => {

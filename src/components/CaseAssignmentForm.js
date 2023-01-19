@@ -13,7 +13,7 @@ const CaseAssignmentForm = ({ caseId }) => {
   });
 
     useEffect(() => {
-        fetch('/users')
+        fetch('http://localhost:3000/users')
         .then(r => r.json())
         .then(data => setuserList(data))
     }, []);
@@ -26,7 +26,7 @@ const CaseAssignmentForm = ({ caseId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("/case_assignments", {
+    fetch("http://localhost:3000/case_assignments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

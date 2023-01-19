@@ -8,7 +8,7 @@ const UserProvider = (props) => {
 
     useEffect(() => {
         //Auto-login
-        fetch('/me')
+        fetch('http://localhost:3000/me')
         .then(r => r.json())
         .then(data => {
             if (!data.errors){

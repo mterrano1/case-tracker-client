@@ -11,7 +11,7 @@ const CloseCaseForm = ({ caseId }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`/cases/${caseId}`, {
+        fetch(`http://localhost:3000/cases/${caseId}`, {
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({

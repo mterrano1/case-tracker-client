@@ -16,7 +16,7 @@ const CustomerDashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('/cases', {
+        fetch('http://localhost:3000/cases', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newCase),
