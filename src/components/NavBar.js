@@ -7,6 +7,8 @@ import LoginButton from './LoginButton';
 const NavBar = () => {
     const { user, loggedIn } = useContext(UserContext);
 
+    console.log(loggedIn)
+
     const button = loggedIn ? <LogoutButton /> : <LoginButton />
 
     const homeLink = user.role !== 'Customer' ?
@@ -14,7 +16,7 @@ const NavBar = () => {
         <NavLink exact to='/CustomerDashboard'>Home</NavLink>
 
     const dashboardLink = user.role !== 'Customer' && loggedIn ?
-        <NavLink exact to={loggedIn ? `/${user.role.toLowerCase()}dashboard` : '/Login'}>Dashboard</NavLink> :
+        <NavLink exact to={loggedIn ? `/${user.role}dashboard` : '/Login'}>Dashboard</NavLink> :
         ''
 
     const casesLink = user.role !== 'Customer' && loggedIn ? 

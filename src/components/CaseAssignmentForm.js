@@ -7,13 +7,16 @@ const CaseAssignmentForm = ({ caseId }) => {
   const [errorsList, setErrorsList] = useState([]);
   const navigate = useNavigate();
   const { handleCaseStatusUpdate } = useContext(UserContext);
+  const token = localStorage.getItem("token");
   const [caseAssignment, setCaseAssignment] = useState({
     assigned_case_id: caseId,
     assigned_employee_id: "",
   });
 
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('http://localhost:3000/users', {
+          headers: {"Authorization": token}
+      })
         .then(r => r.json())
         .then(data => setuserList(data))
     }, []);
@@ -30,6 +33,7 @@ const CaseAssignmentForm = ({ caseId }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": token
       },
       body: JSON.stringify(caseAssignment),
     })

@@ -6,6 +6,7 @@ const Signup = () => {
     const { signup } = useContext(UserContext);
     const navigate = useNavigate();
     const [errorsList, setErrorsList] = useState([]);
+    const token = localStorage.getItem("token");
     const [newUser, setNewUser] = useState({
         first_name: '',
         last_name: '',
@@ -19,7 +20,10 @@ const Signup = () => {
         e.preventDefault();
         fetch('http://localhost:3000/signup', {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            },
             body: JSON.stringify(newUser),
         })
         .then(r => r.json())

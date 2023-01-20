@@ -6,9 +6,12 @@ import CaseDepartmentStats from '../components/CaseDepartmentStats';
 const Reports = () => {
     const {user, loggedIn} = useContext(UserContext);
     const [allCases, setAllCases] = useState({});
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
-        fetch('http://localhost:3000/cases')
+        fetch('http://localhost:3000/cases', {
+            headers: {"Authorization": token}
+        })
         .then(r => r.json())
         .then(data => setAllCases(data))
     }, []);

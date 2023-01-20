@@ -5,6 +5,7 @@ const CommentForm = ({ caseId, user }) => {
     const [showTextField, setShowTextField] = useState(false);
     const navigate = useNavigate();
     const [errorsList, setErrorsList] = useState([]);
+    const token = localStorage.getItem("token");
     const [newComment, setNewComment] = useState({
         first_name: user.first_name,
         last_name: user.last_name,
@@ -16,7 +17,10 @@ const CommentForm = ({ caseId, user }) => {
         e.preventDefault();
         fetch('http://localhost:2000/comments', {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            },
             body: JSON.stringify(newComment),
         })
         .then(r => r.json())

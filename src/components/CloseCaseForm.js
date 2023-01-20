@@ -8,12 +8,16 @@ const CloseCaseForm = ({ caseId }) => {
     const { handleCaseStatusUpdate } = useContext(UserContext);
     const navigate = useNavigate();
     const [errorsList, setErrorsList] = useState([]); 
+    const token = localStorage.getItem("token");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch(`http://localhost:3000/cases/${caseId}`, {
             method: "PATCH",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            },
             body: JSON.stringify({
                 resolution,
                 status: 'Closed'

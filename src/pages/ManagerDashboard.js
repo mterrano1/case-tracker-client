@@ -5,9 +5,15 @@ import ResearcherCases from '../components/ResearcherCases';
 const ManagerDashboard = () => {
     const {user, loggedIn} = useContext(UserContext);
     const [userList, setuserList] = useState([]);
+    const token = localStorage.getItem("token");
 
     useEffect(() => {
-        fetch('http://localhost:3000/users')
+        fetch('http://localhost:3000/users', {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }
+        })
         .then(r => r.json())
         .then(data => setuserList(data))
     }, []);

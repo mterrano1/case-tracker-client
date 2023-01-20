@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CustomerDashboard = () => {
     const {user, loggedIn} = useContext(UserContext);
     const [errorsList, setErrorsList] = useState([]);
+    const token = localStorage.getItem("token");
     const [newCase, setNewCase] = useState({
         allegation_type: '',
         allegation: '',
@@ -18,7 +19,10 @@ const CustomerDashboard = () => {
         e.preventDefault();
         fetch('http://localhost:3000/cases', {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            },
             body: JSON.stringify(newCase),
         })
         .then(r => r.json())

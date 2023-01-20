@@ -18,14 +18,15 @@ const Login = () => {
             body: JSON.stringify({username, password}), 
         })
         .then(r => r.json())
-        .then(user => {
-            if (!user.error){
-                login(user)
+        .then(data => {
+            if (!data.error){
+                localStorage.setItem("token", data.token);
+                login(data.user)
                 navigate('/')
             } else {
                 setUsername('')
                 setPassword('')
-                setErrors(user.error)
+                setErrors(data.error)
             }
         })
     }

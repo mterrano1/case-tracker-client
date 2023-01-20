@@ -4,17 +4,19 @@ import { useNavigate } from 'react-router-dom';
 
 const LogoutButton = () => {
     const { logout } = useContext(UserContext);
+    const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
     const logoutUser = () => {
         fetch('http://localhost:3000/logout', {
-            method: "DELETE",
+            headers: {"Authorization": token}
         })
+        .then(r => r.json())
         .then(() => {
+            localStorage.removeItem("token");
             logout()
-            navigate('/Login')
+            navigate('/login')
         })
-
     }
 
     return (

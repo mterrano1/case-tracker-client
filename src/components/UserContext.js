@@ -5,21 +5,23 @@ const UserProvider = (props) => {
     const [user, setUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
     const [userCases, setUserCases] = useState([]);
+    const token = localStorage.getItem("token");
 
-    useEffect(() => {
-        //Auto-login
-        fetch('http://localhost:3000/me')
-        .then(r => r.json())
-        .then(data => {
-            if (!data.errors){
-                setLoggedIn(true)
-                setUser(data)
-                setUserCases(data.assigned_cases)
-            } else {
-                setLoggedIn(false)
-            }
-        })
-    }, []);
+useEffect(() => {
+    fetch('http://localhost:3000/me', {
+        headers: {"Authorization": token}
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (!data.errors){
+            setLoggedIn(true)
+            setUser(data)
+            setUserCases(data.assigned_cases)
+        } else {
+            setLoggedIn(false)
+        }
+    })
+}, [token]);
 
     const signup = (user) => {
         setUser(user)
