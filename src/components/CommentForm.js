@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 
-const CommentForm = ({ caseId, user }) => {
+const CommentForm = ({ caseId, user, addComment }) => {
     const [showTextField, setShowTextField] = useState(false);
-    const navigate = useNavigate();
     const [errorsList, setErrorsList] = useState([]);
     const token = localStorage.getItem("token");
     const [newComment, setNewComment] = useState({
@@ -15,7 +13,7 @@ const CommentForm = ({ caseId, user }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:2000/comments', {
+            fetch(`http://localhost:5000/cases/${caseId}/comments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -26,7 +24,8 @@ const CommentForm = ({ caseId, user }) => {
         .then(r => r.json())
         .then(data => {
             if (!data.errors) {
-                navigate(`/cases/${caseId}`)
+                addComment(data)
+                setShowTextField(false)
             } else {
                 const errors = data.errors.map(e => <li>{e}</li>)
                 setErrorsList(errors)

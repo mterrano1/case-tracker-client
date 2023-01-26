@@ -7,8 +7,6 @@ import LoginButton from './LoginButton';
 const NavBar = () => {
     const { user, loggedIn } = useContext(UserContext);
 
-    console.log(loggedIn)
-
     const button = loggedIn ? <LogoutButton /> : <LoginButton />
 
     const homeLink = user.role !== 'Customer' ?

@@ -45,7 +45,9 @@ useEffect(() => {
     }
 
     const handleCaseStatusUpdate = (updatedCase) => {
-        const caseUpdate = userCases.map(userCase => userCase.id === updatedCase['id'] ? updatedCase : userCase)
+        const caseUpdate = userCases.map(userCase => userCase.id === updatedCase ? updatedCase : userCase)
+        // const caseUpdate = userCases.map(userCase => userCase.id === updatedCase['id'] ? updatedCase : userCase)
+        // const caseUpdate = userCases.map(userCase => userCase.id === updatedCase.assigned_case_id ? updatedCase : userCase)
         setUserCases(caseUpdate)
     }
 

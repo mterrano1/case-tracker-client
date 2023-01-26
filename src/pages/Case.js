@@ -1,15 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../components/UserContext';
 import DeleteCaseButton from '../components/DeleteCaseButton';
 import CaseAssignmentForm from '../components/CaseAssignmentForm';
 import CloseCaseForm from '../components/CloseCaseForm';
 import CommentForm from '../components/CommentForm';
+import Comments from '../components/Comments';
 
 
 const Case = () => {
     const { id } = useParams();
     const {user, loggedIn, userCases} = useContext(UserContext);
+    const [newComment, setNewComment] = useState('');
+
+    const addComment = (comment) => {
+        setNewComment(comment)
+    }
 
     const filterCase = userCases.filter(userCase => userCase.id === parseInt(id))
 
@@ -20,13 +26,14 @@ const Case = () => {
             <p>Complaint: {displayedCase.allegation}</p>
             <p>Department: {displayedCase.department}</p>
             <p>Status: {displayedCase.status}</p>
+            <Comments caseId={displayedCase.id} newComment={newComment} />
             {displayedCase.status === 'Closed' ? <p>Resolution: {displayedCase.resolution}</p> : null}
             {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id}/> : ''}
             {user.role === 'Manager' && displayedCase.status === "Unassigned" ?
             <CaseAssignmentForm caseId={displayedCase.id}/> : null}
             {user.role === 'Researcher' && displayedCase.status === "Open" ? 
             <CloseCaseForm caseId={displayedCase.id}/> : null}
-            <CommentForm caseId={displayedCase.id} user={user}/>
+            <CommentForm caseId={displayedCase.id} user={user} addComment={addComment}/>
         </div>
     ))
 

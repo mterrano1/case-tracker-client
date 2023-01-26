@@ -27,7 +27,7 @@ const CloseCaseForm = ({ caseId }) => {
         .then(data => {
             if (!data.errors) {
                 handleCaseStatusUpdate(data)
-                navigate(`/cases/${data.id}`)
+                navigate('/cases')
             } else {
                 const errorsLis = data.errors.map(e => <li key={e.id}>{e}</li>)
                 setErrorsList(errorsLis)
