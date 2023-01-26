@@ -4,15 +4,17 @@ import CaseCard from '../components/CaseCard';
 
 
 const Cases = () => {
-    const {loggedIn, userCases} = useContext(UserContext);
+    const {loggedIn, userCases, user} = useContext(UserContext);
+
+    const filterCases = userCases.filter(userCase => userCase.status !== 'Closed')
 
     if (loggedIn) {
         return (
             <div>
-                <h1>UnassignedCases Page</h1>
+                <h1>{user.role === 'Manager' ? 'My Cases' : 'My Open Cases'}</h1>
                 <ul>
-                    {userCases.map((userCase) => (
-                        <CaseCard key={userCase.id} userCase={userCase} />
+                    {filterCases.map((filterCase) => (
+                        <CaseCard key={filterCase.id} userCase={filterCase} />
                     ))}
                 </ul>
             </div>

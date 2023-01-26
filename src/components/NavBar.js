@@ -13,8 +13,8 @@ const NavBar = () => {
         <NavLink exact to='/'>Home</NavLink> :
         <NavLink exact to='/CustomerDashboard'>Home</NavLink>
 
-    const dashboardLink = user.role !== 'Customer' && loggedIn ?
-        <NavLink exact to={loggedIn ? `/${user.role}dashboard` : '/Login'}>Dashboard</NavLink> :
+    const dashboardLink = user.role === 'Manager' && loggedIn ?
+        <NavLink exact to='/managerdashboard'>Dashboard</NavLink> :
         ''
 
     const casesLink = user.role !== 'Customer' && loggedIn ? 

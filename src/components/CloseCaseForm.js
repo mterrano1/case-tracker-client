@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CloseCaseForm = ({ caseId }) => {
     const [showTextField, setShowTextField] = useState(false);
     const [resolution, setResolution] = useState('');
-    const { handleCaseStatusUpdate } = useContext(UserContext);
+    const { handleCaseStatusUpdate, handleCloseCase } = useContext(UserContext);
     const navigate = useNavigate();
     const [errorsList, setErrorsList] = useState([]); 
     const token = localStorage.getItem("token");
@@ -26,6 +26,7 @@ const CloseCaseForm = ({ caseId }) => {
         .then(r => r.json())
         .then(data => {
             if (!data.errors) {
+                handleCloseCase(data)
                 handleCaseStatusUpdate(data)
                 navigate('/cases')
             } else {

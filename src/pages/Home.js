@@ -22,8 +22,8 @@ const Home = () => {
         return (
             <div>
                 <h1>Welcome back {user.first_name}!</h1>
-                <Link to={'/researcherdashboard'}>
-                    <button>My Dashboard</button>
+                <Link to={'/cases'}>
+                    <button>My Cases</button>
                 </Link>
             </div>
         )

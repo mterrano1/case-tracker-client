@@ -5,6 +5,7 @@ const UserProvider = (props) => {
     const [user, setUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
     const [userCases, setUserCases] = useState([]);
+    const [closeCase, setCloseCase] = useState('');
     const token = localStorage.getItem("token");
 
 useEffect(() => {
@@ -21,7 +22,7 @@ useEffect(() => {
             setLoggedIn(false)
         }
     })
-}, [token]);
+}, [token, closeCase]);
 
     const signup = (user) => {
         setUser(user)
@@ -46,9 +47,11 @@ useEffect(() => {
 
     const handleCaseStatusUpdate = (updatedCase) => {
         const caseUpdate = userCases.map(userCase => userCase.id === updatedCase ? updatedCase : userCase)
-        // const caseUpdate = userCases.map(userCase => userCase.id === updatedCase['id'] ? updatedCase : userCase)
-        // const caseUpdate = userCases.map(userCase => userCase.id === updatedCase.assigned_case_id ? updatedCase : userCase)
         setUserCases(caseUpdate)
+    }
+
+    const handleCloseCase = (closedCase) => {
+        setCloseCase(closedCase)
     }
 
     return (
@@ -60,7 +63,8 @@ useEffect(() => {
             logout,
             userCases,
             handleDeleteCase,
-            handleCaseStatusUpdate
+            handleCaseStatusUpdate,
+            handleCloseCase
         }}>
             {props.children}
         </UserContext.Provider>

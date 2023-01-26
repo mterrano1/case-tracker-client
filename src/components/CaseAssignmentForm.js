@@ -41,8 +41,6 @@ const CaseAssignmentForm = ({ caseId }) => {
       .then(data => {
         if (!data.errors) {
           handleCaseStatusUpdate(data.assigned_case_id)
-          // console.log(data)
-            // handleCaseStatusUpdate(data.assigned_case)
             navigate('/cases')
         } else {
             const errors = data.errors.map(e => <li>{e}</li>)
@@ -66,7 +64,7 @@ const CaseAssignmentForm = ({ caseId }) => {
                 <option></option>
                 {researcherNames} 
             </select><br />
-            <button type="submit">Create Case Assignment</button>
+            <button type="submit">Assign</button>
             <ul style={{ color: 'red' }}>
                 {errorsList}
             </ul>
