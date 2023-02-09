@@ -5,7 +5,7 @@ const Comments = ( {caseId, newComment} ) => {
     const token = localStorage.getItem("token");
 
     useEffect(() => {
-        fetch(`http://localhost:5000/cases/${caseId}/comments`, {
+        fetch(`http://localhost:5000/comments/${caseId}`, {
             headers: {"Authorization": token}
         })
         .then(r => r.json())

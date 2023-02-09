@@ -29,6 +29,7 @@ const Signup = () => {
         .then(r => r.json())
         .then(user => {
             if (!user.errors) {
+                localStorage.setItem("token", user.token);
                 signup(user)
                 navigate('/')
             } else {

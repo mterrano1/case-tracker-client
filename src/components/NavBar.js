@@ -5,23 +5,24 @@ import LogoutButton from './LogoutButton';
 import LoginButton from './LoginButton';
 
 const NavBar = () => {
-    const { user, loggedIn } = useContext(UserContext);
+    const { user } = useContext(UserContext);
+    const token = localStorage.getItem("token");
 
-    const button = loggedIn ? <LogoutButton /> : <LoginButton />
+    const button = token ? <LogoutButton /> : <LoginButton />
 
-    const homeLink = user.role !== 'Customer' ?
+    const homeLink = token && user.role !== 'Customer' ?
         <NavLink exact to='/'>Home</NavLink> :
         <NavLink exact to='/CustomerDashboard'>Home</NavLink>
 
-    const dashboardLink = user.role === 'Manager' && loggedIn ?
+    const dashboardLink = token && user.role === 'Manager' && user ?
         <NavLink exact to='/managerdashboard'>Dashboard</NavLink> :
         ''
 
-    const casesLink = user.role !== 'Customer' && loggedIn ? 
+    const casesLink = token && user.role !== 'Customer' && user ?
         <NavLink exact to='/cases'>Cases</NavLink> :
         ''
 
-    const reportsLink = user.role === 'Manager' && loggedIn ?
+    const reportsLink = user.role === 'Manager' && user ?
         <NavLink exact to='/reports'>Reports</NavLink> :
         ''
 

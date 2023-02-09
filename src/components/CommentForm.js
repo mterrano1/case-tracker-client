@@ -13,7 +13,7 @@ const CommentForm = ({ caseId, user, addComment }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-            fetch(`http://localhost:5000/cases/${caseId}/comments`, {
+            fetch(`http://localhost:5000/comments/${caseId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
