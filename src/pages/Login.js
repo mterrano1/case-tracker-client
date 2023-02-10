@@ -32,7 +32,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState('');
-    const { login } = useContext(UserContext);
+    const { user, login } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {

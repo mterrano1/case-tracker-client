@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from './UserContext';
 import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const LogoutButton = () => {
     const { logout } = useContext(UserContext);
@@ -13,7 +14,7 @@ const LogoutButton = () => {
     }
 
     return (
-        <button onClick={logoutUser} >Logout</button>
+        <Button sx={{ my: 2, color: 'white', display: 'block' }} onClick={logoutUser}>Logout</Button>
     );
 }
 

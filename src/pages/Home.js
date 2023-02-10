@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
-import { Link } from 'react-router-dom';
 import { UserContext } from '../components/UserContext';
+import Button from '@mui/material/Button';
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@mui/material/Button';
 
 const Home = () => {
     const {user, loggedIn} = useContext(UserContext);
@@ -10,11 +12,11 @@ const Home = () => {
         return (
             <div>
                 <h1>Welcome back {user.first_name}!</h1>
-                <Link to={'/managerdashboard'}>
-                    <button>My Dashboard</button>
+                <Link to={'/managerdashboard'} component={RouterLink}>
+                    <Button variant="contained">My Dashboard</Button>
                 </Link>
-                <Link to={'/reports'}>
-                    <button>Reports</button>
+                <Link to={'/reports'} component={RouterLink}>
+                    <Button variant="contained">Reports</Button>
                 </Link>
             </div>
         )
@@ -22,8 +24,8 @@ const Home = () => {
         return (
             <div>
                 <h1>Welcome back {user.first_name}!</h1>
-                <Link to={'/cases'}>
-                    <button>My Cases</button>
+                <Link to={'/cases'} component={RouterLink}>
+                    <Button variant="contained">My Cases</Button>
                 </Link>
             </div>
         )
@@ -31,8 +33,8 @@ const Home = () => {
         return (
             <div>
                 <h4>Hello {user.first_name}, we appreciate your feedback!</h4>
-                <Link to={'/customerdashboard'}>
-                    <button>File a complaint</button>
+                <Link to={'/customerdashboard'} component={RouterLink}>
+                    <Button variant="contained">File a complaint</Button>
                 </Link>
             </div>
         )

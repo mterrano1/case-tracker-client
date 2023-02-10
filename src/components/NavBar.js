@@ -1,42 +1,59 @@
-import '../Nav.css';
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from './UserContext';
 import LogoutButton from './LogoutButton';
 import LoginButton from './LoginButton';
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Link from '@mui/material/Button';
 
-const NavBar = () => {
+function NavBar() {
     const { user } = useContext(UserContext);
     const token = localStorage.getItem("token");
 
-    const button = token ? <LogoutButton /> : <LoginButton />
+    const loginLogoutButton = token ? <LogoutButton /> : <LoginButton />
 
     const homeLink = token && user.role !== 'Customer' ?
-        <NavLink exact to='/'>Home</NavLink> :
+        <Link to={'/'} component={NavLink}>
+            <Button sx={{ my: 2, color: 'white', display: 'block' }}>Home</Button>
+        </Link> :
         ''
-        // <NavLink exact to='/CustomerDashboard'>Home</NavLink>
 
     const dashboardLink = token && user.role === 'Manager' && user ?
-        <NavLink exact to='/managerdashboard'>Dashboard</NavLink> :
+        <Link exact="true" to='/managerdashboard' component={NavLink}>
+            <Button sx={{ my: 2, color: 'white', display: 'block' }}>Dashboard</Button>
+        </Link> :
         ''
 
-    const casesLink = token && user.role !== 'Customer' && user ?
-        <NavLink exact to='/cases'>Cases</NavLink> :
+    const casesLink = token && user.role === 'Manager' && user ?
+        <Link exact="true" to='/cases' component={NavLink}>
+            <Button sx={{ my: 2, color: 'white', display: 'block' }}>Cases</Button>
+        </Link> :
         ''
 
-    const reportsLink = user.role === 'Manager' && user ?
-        <NavLink exact to='/reports'>Reports</NavLink> :
+    const reportsLink = token && user.role === 'Manager' && user ?
+        <Link exact="true" to='/reports' component={NavLink}>
+            <Button sx={{ my: 2, color: 'white', display: 'block' }}>Reports</Button>
+        </Link> :
         ''
-    
-    return (
-        <nav className="NavBar">
+
+  return (
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {homeLink}
             {dashboardLink}
             {casesLink}
             {reportsLink}
-            <NavLink exact to='/login'>{button}</NavLink>
-        </nav>
-    );
+            {loginLogoutButton}
+          </Box>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
 }
-
 export default NavBar;
