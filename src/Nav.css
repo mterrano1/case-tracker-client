@@ -1,34 +1,14 @@
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #333;
-    color: #fff;
-  }
-  
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 20px;
-  }
-  
-  nav a:hover {
-    color: #eee;
-  }
-  
-  nav .nav-links {
-    display: flex;
-  }
-  
-  nav .nav-logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-right: 20px;
-  }
-  
-  @media (max-width: 600px) {
-    nav .nav-links {
-      display: none;
-    }
-  }
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.NavBar a {
+  text-decoration: none;
+  color: #333;
+  margin-right: 1rem;
+}
