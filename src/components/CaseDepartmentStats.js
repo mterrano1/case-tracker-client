@@ -6,6 +6,7 @@ Chart.register(ArcElement);
 
 const CaseDepartmentStats = ({ allCases }) => {
   const theme = useTheme();
+  if (!allCases) return null;
   
   const total = Object.values(allCases).reduce((acc, val) => acc + val, 0);
   const percentages = Object.keys(allCases).reduce((acc, key) => {
@@ -139,30 +140,3 @@ const CaseDepartmentStats = ({ allCases }) => {
 };
 
 export default CaseDepartmentStats;
-
-
-
-// import React from "react";
-
-// const CaseDepartmentStats = ({ allCases }) => {
-//     console.log(allCases)
-
-//     if (!allCases) {
-//         return (
-//             <h5>Loading...</h5>
-//         )
-//     } else {
-//         return (
-//             <div>
-//                 <h3>Department</h3>
-//                 <p>Business Banking complaints: {allCases['Business Banking']}</p>
-//                 <p>Home Mortgage complaints: {allCases['Home Mortgage']}</p>
-//                 <p>Local Branch complaints: {allCases['Local Branch']}</p>
-//                 <p>Phone Bank complaints: {allCases['Phone Bank']}</p>
-//                 <p>Wealth Management complaints: {allCases['Wealth Management']}</p>
-//             </div>
-//         )
-//     }
-// }
-
-// export default CaseDepartmentStats;

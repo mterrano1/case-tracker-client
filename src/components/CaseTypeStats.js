@@ -6,6 +6,7 @@ Chart.register(ArcElement);
 
 const CaseTypeStats = ({ allCases }) => {
   const theme = useTheme();
+  if (!allCases) return null;
   
   const total = Object.values(allCases).reduce((acc, val) => acc + val, 0);
   const percentages = Object.keys(allCases).reduce((acc, key) => {
@@ -134,28 +135,3 @@ const CaseTypeStats = ({ allCases }) => {
 };
 
 export default CaseTypeStats;
-
-
-
-
-// import React from "react";
-
-// const CaseTypeStats = ({ allCases }) => {
-//     if (!allCases) {
-//         return (
-//             <h5>Loading...</h5>
-//         )
-//     } else {
-//         return (
-//             <div>
-//                 <h3>Type</h3>
-//                 <p>Customer service complaints: {allCases['Customer service']}</p>
-//                 <p>Fee's complaints: {allCases['Fees']}</p>
-//                 <p>Discrimination complaints: {allCases['Discrimination']}</p>
-//                 <p>Unauthorized account complaints: {allCases['Unauthorized account']}</p>
-//             </div>
-//         )
-//     }
-// }
-
-// export default CaseTypeStats;
