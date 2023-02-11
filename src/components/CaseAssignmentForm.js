@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from '../components/UserContext';
 import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
 
 const CaseAssignmentForm = ({ caseId }) => {
   const [userList, setuserList] = useState([]);
@@ -54,23 +59,45 @@ const CaseAssignmentForm = ({ caseId }) => {
         <h1>Loading...</h1>
     )
   } else {
+    // const researcherNames = userList.map(user => (
+    //     <option key={user.id} value={user.id}>{user.first_name} {user.last_name}</option>
+    // ))
     const researcherNames = userList.map(user => (
-        <option key={user.id} value={user.id}>{user.first_name} {user.last_name}</option>
-    ))
+      <MenuItem key={user.id} value={user.id}>{user.first_name} {user.last_name}</MenuItem>
+  ))
     return (
-        <form onSubmit={handleSubmit}>
-            Assign to:
-            <select name='assigned_employee_id' onChange={handleChange}>
-                <option></option>
-                {researcherNames} 
-            </select><br />
-            <button type="submit">Assign</button>
-            <ul style={{ color: 'red' }}>
-                {errorsList}
-            </ul>
-        </form>
+      <form onSubmit={handleSubmit}>
+        <FormControl variant="outlined">
+          <InputLabel id="demo-simple-select-outlined-label">Assign to</InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            name='assigned_employee_id'
+            value={caseAssignment.assigned_employee_id}
+            onChange={handleChange}
+            label="Assign to"
+          >
+            {researcherNames}
+          </Select>
+        </FormControl>
+      </form>
     )
-  } 
-};
+  }
+}
 
 export default CaseAssignmentForm;
+
+        {/* // <form onSubmit={handleSubmit}>
+        //     Assign to:
+        //     <select name='assigned_employee_id' onChange={handleChange}>
+        //         <option></option>
+        //         {researcherNames} 
+        //     </select><br />
+        //     <Button variant="contained" type="submit">Assign</Button>
+        //     <ul style={{ color: 'red' }}>
+        //         {errorsList}
+        //     </ul>
+        // </form>
+    )
+  } 
+}; */}

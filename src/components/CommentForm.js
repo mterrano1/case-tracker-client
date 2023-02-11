@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from '@mui/material/Button';
 
 const CommentForm = ({ caseId, user, addComment }) => {
     const [showTextField, setShowTextField] = useState(false);
@@ -42,13 +43,13 @@ const CommentForm = ({ caseId, user, addComment }) => {
 
     return (
         <div>
-            <button onClick={() => setShowTextField(!showTextField)}>
+            <Button variant="contained" onClick={() => setShowTextField(!showTextField)}>
                 {showTextField ? 'Cancel' : 'Add comment'}
-            </button>
+            </Button>
             <form onSubmit={handleSubmit}>
                 {showTextField ? <input type='text' name='comment' onChange={handleChange}/> 
                                 : null}
-                {showTextField ? <button type='submit'>Add comment</button> : null}
+                {showTextField ? <Button variant="contained" type='submit'>Add comment</Button> : null}
                 <br/>
                 <ul style={{ color: 'red' }}>
                     {errorsList}

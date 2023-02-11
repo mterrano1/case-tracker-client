@@ -20,7 +20,7 @@ const CaseCard = ({ userCase }) => {
                         <ListItemText primary={allegation_type} secondary={department} />
                     </Grid>
                     <Grid item xs={6}>
-                        <ListItemText primary={status} secondary={`${days_ago} days ago`} />
+                        <ListItemText primary={status} secondary={`created ${days_ago}`} />
                     </Grid>
                 </Grid>
             </ListItem>

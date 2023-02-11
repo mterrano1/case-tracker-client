@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from './UserContext';
 import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const DeleteCaseButton = ({ caseId }) => {
     const { handleDeleteCase } = useContext(UserContext);
@@ -19,7 +20,7 @@ const DeleteCaseButton = ({ caseId }) => {
     }
 
     return (
-        <button onClick={deleteCase}>Delete Case</button>
+        <Button variant="contained" onClick={deleteCase}>Delete Case</Button>
     );
 }
 

@@ -19,7 +19,7 @@ const Cases = () => {
     if (loggedIn) {
         return (
             <div>
-                <h1>{user.role === 'Manager' ? 'My Cases' : 'My Open Cases'}</h1>
+                <h1 style={{ textAlign: 'center' }}>{user.role === 'Manager' ? 'My Cases' : 'My Open Cases'}</h1>
                 <Paper elevation={2} style={{ padding: "1rem", margin: "1rem" }}>
                     <List style={{ listStyleType: "none", padding: 0 }}>
                         {currentCases.map((userCase) => (
