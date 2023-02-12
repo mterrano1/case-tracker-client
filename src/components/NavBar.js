@@ -44,11 +44,13 @@ function NavBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, justifyContent: "flex-start" }}>
             {homeLink}
             {dashboardLink}
             {casesLink}
             {reportsLink}
+          </Box>
+          <Box sx={{ display: { xs: "none", md: "flex" }, marginLeft: "auto" }}>
             {loginLogoutButton}
           </Box>
         </Toolbar>

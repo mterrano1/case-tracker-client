@@ -13,7 +13,7 @@ const Comments = ( {caseId, newComment} ) => {
     }, [newComment]);
 
     const commentList = comments ?
-                        comments.map(comment => <li key={comment.id}>{comment.comment} -{comment.name}</li>) :
+                        comments.map(comment => <li key={comment.id}>{comment.comment} -{comment.first_name} {comment.last_name}</li>) :
                         ''
 
     return (

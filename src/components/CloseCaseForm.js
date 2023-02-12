@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from '../components/UserContext';
 import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const CloseCaseForm = ({ caseId }) => {
     const [showTextField, setShowTextField] = useState(false);
@@ -39,16 +40,16 @@ const CloseCaseForm = ({ caseId }) => {
 
     return (
         <div>
-            <button onClick={() => setShowTextField(!showTextField)}>
+            <Button size="small" onClick={() => setShowTextField(!showTextField)}>
                 {showTextField ? 'Cancel' : 'Resolve Case'}
-            </button>
+            </Button>
             <form onSubmit={handleSubmit}>
                 {showTextField ? <input 
                                     type='text' 
                                     value={resolution} 
                                     onChange={e => setResolution(e.target.value)} /> 
                                 : null}
-                {showTextField ? <button type='submit'>Close Case</button> : null}
+                {showTextField ? <Button type='submit' size="small">Close Case</Button> : null}
                 <br/>
                 <ul style={{ color: 'red' }}>
                     {errorsList}

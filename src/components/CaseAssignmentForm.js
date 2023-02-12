@@ -24,7 +24,7 @@ const CaseAssignmentForm = ({ caseId }) => {
       })
         .then(r => r.json())
         .then(data => setuserList(data))
-    }, []);
+    }, [token]);
 
   const handleChange = (e) => {
     setCaseAssignment({
@@ -59,19 +59,14 @@ const CaseAssignmentForm = ({ caseId }) => {
         <h1>Loading...</h1>
     )
   } else {
-    // const researcherNames = userList.map(user => (
-    //     <option key={user.id} value={user.id}>{user.first_name} {user.last_name}</option>
-    // ))
     const researcherNames = userList.map(user => (
       <MenuItem key={user.id} value={user.id}>{user.first_name} {user.last_name}</MenuItem>
   ))
     return (
       <form onSubmit={handleSubmit}>
-        <FormControl variant="outlined">
-          <InputLabel id="demo-simple-select-outlined-label">Assign to</InputLabel>
+        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }} size="small">
+          <InputLabel id="Assign to">Assign to</InputLabel>
           <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
             name='assigned_employee_id'
             value={caseAssignment.assigned_employee_id}
             onChange={handleChange}
@@ -79,6 +74,12 @@ const CaseAssignmentForm = ({ caseId }) => {
           >
             {researcherNames}
           </Select>
+          {caseAssignment.assigned_employee_id && 
+            <Button size="small" type="submit">Assign</Button>
+          }
+             <ul style={{ color: 'red' }}>
+                 {errorsList}
+             </ul>
         </FormControl>
       </form>
     )
@@ -86,18 +87,3 @@ const CaseAssignmentForm = ({ caseId }) => {
 }
 
 export default CaseAssignmentForm;
-
-        {/* // <form onSubmit={handleSubmit}>
-        //     Assign to:
-        //     <select name='assigned_employee_id' onChange={handleChange}>
-        //         <option></option>
-        //         {researcherNames} 
-        //     </select><br />
-        //     <Button variant="contained" type="submit">Assign</Button>
-        //     <ul style={{ color: 'red' }}>
-        //         {errorsList}
-        //     </ul>
-        // </form>
-    )
-  } 
-}; */}

@@ -110,7 +110,7 @@ const Login = () => {
             <Grid container>
               <Grid item>
                 <Typography variant="subtitle2">
-                    <Link to="/signup">Already have an account? Sign Up</Link>
+                    <Link to="/signup">Don't have an account yet? Sign Up</Link>
                 </Typography>
               </Grid>
             </Grid>

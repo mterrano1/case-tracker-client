@@ -20,7 +20,7 @@ const DeleteCaseButton = ({ caseId }) => {
     }
 
     return (
-        <Button variant="contained" onClick={deleteCase}>Delete Case</Button>
+        <Button onClick={deleteCase} size="small">Delete Case</Button>
     );
 }
 

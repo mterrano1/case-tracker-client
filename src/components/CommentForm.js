@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 const CommentForm = ({ caseId, user, addComment }) => {
     const [showTextField, setShowTextField] = useState(false);
@@ -43,13 +44,22 @@ const CommentForm = ({ caseId, user, addComment }) => {
 
     return (
         <div>
-            <Button variant="contained" onClick={() => setShowTextField(!showTextField)}>
+            <Button size="small" onClick={() => setShowTextField(!showTextField)}>
                 {showTextField ? 'Cancel' : 'Add comment'}
             </Button>
             <form onSubmit={handleSubmit}>
-                {showTextField ? <input type='text' name='comment' onChange={handleChange}/> 
+                {showTextField ? <TextField
+                                  id="comment"
+                                  name="comment"
+                                  label="Comment"
+                                  multiline
+                                  rows={4}
+                                  fullWidth
+                                  variant="outlined"
+                                  onChange={handleChange}
+                                />
                                 : null}
-                {showTextField ? <Button variant="contained" type='submit'>Add comment</Button> : null}
+                {showTextField ? <Button type='submit' size="small">Add comment</Button> : null}
                 <br/>
                 <ul style={{ color: 'red' }}>
                     {errorsList}
