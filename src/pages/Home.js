@@ -10,7 +10,7 @@ const Home = () => {
     if (loggedIn && user.role === 'Manager') {
 
         return (
-            <div>
+            <div style={styles.container}>
                 <h1>Welcome back {user.first_name}!</h1>
                 <Link to={'/managerdashboard'} component={RouterLink}>
                     <Button variant="contained">My Dashboard</Button>
@@ -22,7 +22,7 @@ const Home = () => {
         )
     } else if (loggedIn && user.role === 'Researcher') {
         return (
-            <div>
+            <div style={styles.container}>
                 <h1>Welcome back {user.first_name}!</h1>
                 <Link to={'/cases'} component={RouterLink}>
                     <Button variant="contained">My Cases</Button>
@@ -31,7 +31,7 @@ const Home = () => {
         )
     } else if (loggedIn && user.role === 'Customer') {
         return (
-            <div>
+            <div style={styles.container}>
                 <h4>Hello {user.first_name}, we appreciate your feedback!</h4>
                 <Link to={'/customerdashboard'} component={RouterLink}>
                     <Button variant="contained">File a complaint</Button>
@@ -48,3 +48,12 @@ const Home = () => {
 }
 
 export default Home;
+
+const styles = {
+    container: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    }
+  };

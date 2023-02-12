@@ -85,7 +85,7 @@ const CaseDepartmentStats = ({ allCases }) => {
 
   return (
     <Card>
-      <CardHeader title="Case Department Stats" />
+      <CardHeader title="Allegations by Department" style={{textAlign: "center"}} />
       <Divider />
       <CardContent>
         <Box

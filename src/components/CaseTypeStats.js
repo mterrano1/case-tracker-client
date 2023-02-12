@@ -80,7 +80,7 @@ const CaseTypeStats = ({ allCases }) => {
 
   return (
     <Card>
-      <CardHeader title="Case Type Stats" />
+      <CardHeader title="Type of Allegations" style={{textAlign: "center"}} />
       <Divider />
       <CardContent>
         <Box

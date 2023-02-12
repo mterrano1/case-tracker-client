@@ -1,154 +1,100 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from '../components/UserContext';
 import CaseCard from '../components/CaseCard';
-import { Paper, List } from '@mui/material/';
+import { Paper, Table, TableBody, TableHead, TableRow, TableCell, Pagination } from '@mui/material/';
 
 const Cases = () => {
-    const {loggedIn, userCases, user} = useContext(UserContext);
-    const filterCases = userCases.filter(userCase => userCase.status !== 'Closed')
-    if (loggedIn) {
-        return (
-            <div>
-                <h1>{user.role === 'Manager' ? 'My Cases' : 'My Open Cases'}</h1>
-                <Paper>
-                    <List>
-                        {filterCases.map((filterCase) => (
-                            <CaseCard key={filterCase.id} userCase={filterCase} />
-                        ))}
-                    </List>
-                </Paper>
-            </div>
-        )
-    } else {
-        return (
-            <h3>Unauthorized</h3>
-        )
+  const { loggedIn, userCases, user } = useContext(UserContext);
+  const filterCases = userCases.filter(userCase => userCase.status !== 'Closed');
+  const [page, setPage] = useState(1);
+  const [casesPerPage] = useState(5);
+
+  const indexOfLastCase = page * casesPerPage;
+  const indexOfFirstCase = indexOfLastCase - casesPerPage;
+  const currentCases = filterCases.slice(indexOfFirstCase, indexOfLastCase);
+
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
+  if (loggedIn) {
+    return (
+      <div style={{ width: '50%', margin: '0 auto' }}>
+        <Paper>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell style={{fontSize: '15px', fontWeight: 'bold'}}>Allegation Type</TableCell>
+                <TableCell style={{fontSize: '15px', fontWeight: 'bold'}}>Department</TableCell>
+                <TableCell style={{fontSize: '15px', fontWeight: 'bold'}}>Status</TableCell>
+                <TableCell style={{fontSize: '15px', fontWeight: 'bold'}}>Days Ago</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {currentCases.map((filterCase) => (
+                <React.Fragment key={filterCase.id}>
+                  <CaseCard userCase={filterCase} />
+                </React.Fragment>
+              ))}
+            </TableBody>
+          </Table>
+        </Paper>
+        <Pagination count={filterCases.length} page={page} onChange={handleChange} />
+      </div>
+    );
+  } else {
+    return (
+        <h3>Unauthorized</h3>
+        );
     }
-}
+};
+    
 export default Cases;
 
 
-// import React, { useContext, useState } from "react";
-// import { UserContext } from '../components/UserContext';
-// import CaseCard from '../components/CaseCard';
-// import { Paper, List, Pagination } from '@mui/material/';
 
-// const Cases = () => {
-//     const { loggedIn, userCases, user } = useContext(UserContext);
-//     const filterCases = userCases.filter(userCase => userCase.status !== 'Closed');
-//     const [currentPage, setCurrentPage] = useState(1);
-//     const casesPerPage = 5;
-//     const indexOfLastCase = currentPage * casesPerPage;
-//     const indexOfFirstCase = indexOfLastCase - casesPerPage;
-//     const currentCases = filterCases.slice(indexOfFirstCase, indexOfLastCase);
-
-//     const handlePageChange = (event, value) => {
-//         setCurrentPage(value);
-//     };
-
-//     if (loggedIn) {
-//         return (
-//             <div>
-//                 <h1 style={{ textAlign: 'center' }}>{user.role === 'Manager' ? 'My Cases' : 'My Open Cases'}</h1>
-//                 <Paper elevation={2} style={{ padding: "1rem", margin: "1rem" }}>
-//                     <List style={{ listStyleType: "none", padding: 0 }}>
-//                         {currentCases.map((userCase) => (
-//                             <li key={userCase.id} style={{ border: "1px solid gray", margin: "1rem 0", padding: "1rem" }}>
-//                                 <CaseCard userCase={userCase} />
-//                             </li>
-//                         ))}
-//                     </List>
-//                 </Paper>
-//                 <Pagination
-//                     count={Math.ceil(filterCases.length / casesPerPage)}
-//                     page={currentPage}
-//                     onChange={handlePageChange}
-//                 />
-//             </div>
-//         )
-//     } else {
-//         return (
-//             <h3>Unauthorized</h3>
-//         )
-//     }
-// };
-
-// export default Cases;
 
 
 // import React, { useContext, useState } from "react";
 // import { UserContext } from '../components/UserContext';
 // import CaseCard from '../components/CaseCard';
-// import { Paper, List, Pagination } from '@mui/material/';
+// import { Paper, List, ListItem, Pagination } from '@mui/material/';
 
 // const Cases = () => {
-//     const { loggedIn, userCases, user } = useContext(UserContext);
-//     const filterCases = userCases.filter(userCase => userCase.status !== 'Closed');
-//     const [currentPage, setCurrentPage] = useState(1);
-//     const casesPerPage = 5;
-//     const indexOfLastCase = currentPage * casesPerPage;
-//     const indexOfFirstCase = indexOfLastCase - casesPerPage;
-//     const currentCases = filterCases.slice(indexOfFirstCase, indexOfLastCase);
+//   const { loggedIn, userCases, user } = useContext(UserContext);
+//   const filterCases = userCases.filter(userCase => userCase.status !== 'Closed');
+//   const [page, setPage] = useState(1);
+//   const [casesPerPage] = useState(5);
 
-//     const handlePageChange = (event, value) => {
-//         setCurrentPage(value);
-//     };
+//   const indexOfLastCase = page * casesPerPage;
+//   const indexOfFirstCase = indexOfLastCase - casesPerPage;
+//   const currentCases = filterCases.slice(indexOfFirstCase, indexOfLastCase);
 
-//     if (loggedIn) {
-//         return (
-//             <div>
-//                 <h1>{user.role === 'Manager' ? 'My Cases' : 'My Open Cases'}</h1>
-//                 <Paper elevation={2}>
-//                     <List>
-//                         {currentCases.map((userCase) => (
-//                             <CaseCard key={userCase.id} userCase={userCase} />
-//                         ))}
-//                     </List>
-//                 </Paper>
-//                 <Pagination
-//                     count={Math.ceil(filterCases.length / casesPerPage)}
-//                     page={currentPage}
-//                     onChange={handlePageChange}
-//                 />
-//             </div>
-//         )
-//     } else {
-//         return (
-//             <h3>Unauthorized</h3>
-//         )
-//     }
+//   const handleChange = (event, value) => {
+//     setPage(value);
+//   };
+
+//   if (loggedIn) {
+//     return (
+//       <div>
+//         <Paper>
+//           <List>
+//             {currentCases.map((filterCase, index) => (
+//               <React.Fragment key={filterCase.id}>
+//                 <ListItem component={CaseCard} userCase={filterCase} />
+//                 {index < currentCases.length - 1 && <ListItem divider />}
+//               </React.Fragment>
+//             ))}
+//           </List>
+//         </Paper>
+//         <Pagination count={filterCases.length} page={page} onChange={handleChange} />
+//       </div>
+//     );
+//   } else {
+//     return (
+//       <h3>Unauthorized</h3>
+//     );
+//   }
 // };
-
-// export default Cases;
-
-
-
-// import React, { useContext } from "react";
-// import { UserContext } from '../components/UserContext';
-// import CaseCard from '../components/CaseCard';
-
-
-// const Cases = () => {
-//     const {loggedIn, userCases, user} = useContext(UserContext);
-
-//     const filterCases = userCases.filter(userCase => userCase.status !== 'Closed')
-
-//     if (loggedIn) {
-//         return (
-//             <div>
-//                 <h1>{user.role === 'Manager' ? 'My Cases' : 'My Open Cases'}</h1>
-//                 <ul>
-//                     {filterCases.map((filterCase) => (
-//                         <CaseCard key={filterCase.id} userCase={filterCase} />
-//                     ))}
-//                 </ul>
-//             </div>
-//         )
-//     } else {
-//         return (
-//             <h3>Unauthorized</h3>
-//         )
-//     }
-// }
 
 // export default Cases;

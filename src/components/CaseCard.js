@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { ListItem, ListItemText, Grid, colors } from '@mui/material/';
+import { TableRow, TableCell, colors } from '@mui/material/';
 
 const CaseCard = ({ userCase }) => {
     const {id, allegation_type, department, status, days_ago} = userCase;
@@ -14,21 +14,106 @@ const CaseCard = ({ userCase }) => {
     
     return (
         <ThemeProvider theme={theme}>
-            <ListItem component={Link} to={`/cases/${id}`}>
-                <Grid container alignItems="center">
-                    <Grid item xs={6}>
-                        <ListItemText primary={allegation_type} secondary={department} />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <ListItemText primary={status} secondary={`created ${days_ago}`} />
-                    </Grid>
-                </Grid>
-            </ListItem>
+            <TableRow component={Link} to={`/cases/${id}`} style={{
+                backgroundColor: 'white',
+                transition: 'background-color 0.3s',
+                '&:hover': {
+                    backgroundColor: '#f2f2f2',
+                }
+            }}>
+                <TableCell>{allegation_type}</TableCell>
+                <TableCell>{department}</TableCell>
+                <TableCell>{status}</TableCell>
+                <TableCell>{`created ${days_ago}`}</TableCell>
+            </TableRow>
         </ThemeProvider>
     );
 };
 
 export default CaseCard;
+
+
+
+
+// import React from "react";
+// import { Link } from 'react-router-dom';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { ListItem, ListItemText, Grid, colors } from '@mui/material/';
+
+// const CaseCard = ({ userCase }) => {
+//     const {id, allegation_type, department, status, days_ago} = userCase;
+    
+//     const theme = createTheme({
+//         palette: {
+//             primary: colors.blue,
+//         },
+//     });
+    
+//     return (
+//         <ThemeProvider theme={theme}>
+//             <ListItem component={Link} to={`/cases/${id}`} style={{
+//                 backgroundColor: 'white',
+//                 transition: 'background-color 0.3s',
+//                 '&:hover': {
+//                     backgroundColor: '#f2f2f2',
+//                 }
+//             }}>
+//                 <Grid container alignItems="center">
+//                     <Grid item xs={3}>
+//                         <ListItemText primary={allegation_type} />
+//                     </Grid>
+//                     <Grid item xs={3}>
+//                         <ListItemText primary={department} />
+//                     </Grid>
+//                     <Grid item xs={3}>
+//                         <ListItemText primary={status} />
+//                     </Grid>
+//                     <Grid item xs={3}>
+//                         <ListItemText secondary={`created ${days_ago}`} />
+//                     </Grid>
+//                 </Grid>
+//             </ListItem>
+//         </ThemeProvider>
+//     );
+// };
+
+// export default CaseCard;
+
+
+
+
+
+// import React from "react";
+// import { Link } from 'react-router-dom';
+// import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { ListItem, ListItemText, Grid, colors } from '@mui/material/';
+
+// const CaseCard = ({ userCase }) => {
+//     const {id, allegation_type, department, status, days_ago} = userCase;
+    
+//     const theme = createTheme({
+//         palette: {
+//             primary: colors.blue,
+//         },
+//     });
+    
+//     return (
+//         <ThemeProvider theme={theme}>
+//             <ListItem component={Link} to={`/cases/${id}`}>
+//                 <Grid container alignItems="center">
+//                     <Grid item xs={6}>
+//                         <ListItemText primary={allegation_type} secondary={department} />
+//                     </Grid>
+//                     <Grid item xs={6}>
+//                         <ListItemText primary={status} secondary={`created ${days_ago}`} />
+//                     </Grid>
+//                 </Grid>
+//             </ListItem>
+//         </ThemeProvider>
+//     );
+// };
+
+// export default CaseCard;
 
 
 
