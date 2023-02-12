@@ -12,44 +12,61 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+
+
 
 const Case = () => {
     const { id } = useParams();
-    const {user, loggedIn, userCases} = useContext(UserContext);
+    const {user, userCases} = useContext(UserContext);
     const [newComment, setNewComment] = useState('');
     const addComment = (comment) => {
         setNewComment(comment)
     }
     const filterCase = userCases.filter(userCase => userCase.id === parseInt(id))
     const displayedCases = filterCase.map(displayedCase => (
-        <Card sx={{ maxWidth: 500 }} key={displayedCase.id}>
-        <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+        <Container component="main" maxWidth="xs">
+        <CssBaseline />
+          <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+          >
+            <Card sx={{ maxWidth: 500 }} key={displayedCase.id}>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
                 {displayedCase.department}
-            </Typography>
-            <Typography gutterBottom variant="h6" component="div">
+              </Typography>
+              <Typography gutterBottom variant="h6" component="div">
                 {displayedCase.allegation_type}
-            </Typography>
-            <Typography variant="body2">
+              </Typography>
+              <Typography variant="body2">
                 Status: {displayedCase.status}
-            </Typography>
-            <Typography variant="body2">
+              </Typography>
+              <Typography variant="body2">
                 {displayedCase.status === 'Closed' ? `Resolution : ${displayedCase.resolution}` : null}
-            </Typography><br/><br/>
-            <Typography variant="body2">
+              </Typography><br/><br/>
+              <Typography variant="body2">
                 {displayedCase.allegation}
             </Typography><br/>
             <Comments caseId={displayedCase.id} newComment={newComment} />
             <CommentForm caseId={displayedCase.id} user={user} addComment={addComment} />
-        </CardContent>
-        <CardActions>
-            {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id} /> : null}
-            {user.role === 'Manager' && displayedCase.status === "Unassigned" ?
+            </CardContent>
+            <CardActions>
+              {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id} /> : null}
+              {user.role === 'Manager' && displayedCase.status === "Unassigned" ?
                 <CaseAssignmentForm caseId={displayedCase.id} /> : null}
-            {user.role === 'Researcher' && displayedCase.status === "Open" ? 
+              {user.role === 'Researcher' && displayedCase.status === "Open" ? 
                 <CloseCaseForm caseId={displayedCase.id} /> : null}
-        </CardActions>
-        </Card>
+            </CardActions>
+            </Card>
+          </Box>
+        </Container>
     ))
   return (
     <div>{displayedCases}</div>
