@@ -1,8 +1,10 @@
 import React from "react";
 import { Doughnut } from 'react-chartjs-2';
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
-import {Chart, ArcElement} from 'chart.js';
-Chart.register(ArcElement);
+// import {Chart, ArcElement} from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+// Chart.register(ArcElement);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CaseDepartmentStats = ({ allCases }) => {
   const theme = useTheme();
@@ -25,7 +27,7 @@ const CaseDepartmentStats = ({ allCases }) => {
       {
         data: percentValues,
         backgroundColor: ['#3F51B5', '#e53935', '#FB8C00', '#1E88E5', '#81C784'],
-        borderWidth: 8,
+        borderWidth: 1,
         borderColor: '#FFFFFF',
         hoverBorderColor: '#FFFFFF'
       }

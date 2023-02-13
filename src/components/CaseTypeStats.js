@@ -1,12 +1,13 @@
 import React from "react";
 import { Doughnut } from 'react-chartjs-2';
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
-import {Chart, ArcElement} from 'chart.js';
-Chart.register(ArcElement);
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CaseTypeStats = ({ allCases }) => {
   const theme = useTheme();
   if (!allCases) return null;
+  console.log(allCases)
   
   const total = Object.values(allCases).reduce((acc, val) => acc + val, 0);
   const percentages = Object.keys(allCases).reduce((acc, key) => {
@@ -25,7 +26,7 @@ const CaseTypeStats = ({ allCases }) => {
       {
         data: percentValues,
         backgroundColor: ['#3F51B5', '#e53935', '#FB8C00', '#1E88E5'],
-        borderWidth: 8,
+        borderWidth: 1,
         borderColor: '#FFFFFF',
         hoverBorderColor: '#FFFFFF'
       }
@@ -80,7 +81,7 @@ const CaseTypeStats = ({ allCases }) => {
 
   return (
     <Card>
-      <CardHeader title="Type of Allegations" style={{textAlign: "center"}} />
+      <CardHeader title="Allegations by Category" style={{textAlign: "center"}} />
       <Divider />
       <CardContent>
         <Box

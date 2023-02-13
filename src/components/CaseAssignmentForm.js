@@ -46,7 +46,7 @@ const CaseAssignmentForm = ({ caseId }) => {
       .then(data => {
         if (!data.errors) {
           handleCaseStatusUpdate(data.assigned_case_id)
-            navigate('/cases')
+          navigate('/cases')
         } else {
             const errors = data.errors.map(e => <li>{e}</li>)
             setErrorsList(errors)

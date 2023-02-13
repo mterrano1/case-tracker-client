@@ -13,6 +13,8 @@ const Cases = () => {
   const indexOfFirstCase = indexOfLastCase - casesPerPage;
   const currentCases = filterCases.slice(indexOfFirstCase, indexOfLastCase);
 
+  const pagCount = Math.ceil(filterCases.length / 5)
+
   const handleChange = (event, value) => {
     setPage(value);
   };
@@ -39,7 +41,7 @@ const Cases = () => {
             </TableBody>
           </Table>
         </Paper>
-        <Pagination count={filterCases.length} page={page} onChange={handleChange} />
+        <Pagination count={pagCount} page={page} onChange={handleChange} />
       </div>
     );
   } else {
