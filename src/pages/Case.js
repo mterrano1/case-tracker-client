@@ -25,7 +25,7 @@ const Case = () => {
     }
     const filterCase = userCases.filter(userCase => userCase.id === parseInt(id))
     const displayedCases = filterCase.map(displayedCase => (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" key={displayedCase.id}>
         <CssBaseline />
           <Box
           sx={{

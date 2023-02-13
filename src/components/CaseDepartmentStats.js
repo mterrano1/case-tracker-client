@@ -1,9 +1,7 @@
 import React from "react";
 import { Doughnut } from 'react-chartjs-2';
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
-// import {Chart, ArcElement} from 'chart.js';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-// Chart.register(ArcElement);
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CaseDepartmentStats = ({ allCases }) => {

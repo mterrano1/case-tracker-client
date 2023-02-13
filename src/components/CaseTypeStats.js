@@ -7,7 +7,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const CaseTypeStats = ({ allCases }) => {
   const theme = useTheme();
   if (!allCases) return null;
-  console.log(allCases)
   
   const total = Object.values(allCases).reduce((acc, val) => acc + val, 0);
   const percentages = Object.keys(allCases).reduce((acc, key) => {
