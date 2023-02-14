@@ -12,7 +12,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
+import { Grid, Box } from "@mui/material";
 
 
 
@@ -53,15 +53,25 @@ const Case = () => {
                 {displayedCase.allegation}
             </Typography><br/>
             <Comments caseId={displayedCase.id} newComment={newComment} />
-            <CommentForm caseId={displayedCase.id} user={user} addComment={addComment} />
+              <Box componenet={CardActions} >
+                <Grid item xs={12}>
+                  <CommentForm caseId={displayedCase.id} user={user} addComment={addComment} />
+                </Grid>
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                    {user.role === 'Manager' && displayedCase.status === "Unassigned" ?
+                      <CaseAssignmentForm caseId={displayedCase.id} /> : null}
+                  </Grid>
+                  <Grid item xs={12}>
+                    {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id} /> : null}
+                  </Grid>
+                  <Grid item xs={12}>
+                    {user.role === 'Researcher' && displayedCase.status === "Open" ? 
+                    <CloseCaseForm caseId={displayedCase.id} /> : null}
+                  </Grid>
+                </Grid>
+              </Box>
             </CardContent>
-            <CardActions>
-              {user.role === 'Manager' ? <DeleteCaseButton caseId={displayedCase.id} /> : null}
-              {user.role === 'Manager' && displayedCase.status === "Unassigned" ?
-                <CaseAssignmentForm caseId={displayedCase.id} /> : null}
-              {user.role === 'Researcher' && displayedCase.status === "Open" ? 
-                <CloseCaseForm caseId={displayedCase.id} /> : null}
-            </CardActions>
             </Card>
           </Box>
         </Container>

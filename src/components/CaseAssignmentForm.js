@@ -64,13 +64,14 @@ const CaseAssignmentForm = ({ caseId }) => {
   ))
     return (
       <form onSubmit={handleSubmit}>
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }} size="small">
+        <FormControl variant="outlined" sx={{ minWidth: 120 }} size="small">
           <InputLabel id="Assign to">Assign to</InputLabel>
           <Select
             name='assigned_employee_id'
             value={caseAssignment.assigned_employee_id}
             onChange={handleChange}
             label="Assign to"
+            size="small"
           >
             {researcherNames}
           </Select>

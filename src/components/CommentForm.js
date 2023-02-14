@@ -44,7 +44,7 @@ const CommentForm = ({ caseId, user, addComment }) => {
 
     return (
         <div>
-            <Button size="small" onClick={() => setShowTextField(!showTextField)}>
+            <Button size="small" variant="contained" onClick={() => setShowTextField(!showTextField)}>
                 {showTextField ? 'Cancel' : 'Add comment'}
             </Button>
             <form onSubmit={handleSubmit}>

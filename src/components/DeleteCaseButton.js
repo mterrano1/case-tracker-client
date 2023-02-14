@@ -36,7 +36,7 @@ const DeleteCaseButton = ({ caseId }) => {
 
     return (
         <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button size="small" variant="contained" onClick={handleClickOpen}>
         Delete case
       </Button>
       <Dialog

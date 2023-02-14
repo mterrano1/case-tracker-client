@@ -41,7 +41,7 @@ const CloseCaseForm = ({ caseId }) => {
 
     return (
         <div>
-            <Button size="small" onClick={() => setShowTextField(!showTextField)}>
+            <Button size="small" variant="contained" onClick={() => setShowTextField(!showTextField)}>
                 {showTextField ? 'Cancel' : 'Resolve Case'}
             </Button>
             <form onSubmit={handleSubmit}>
