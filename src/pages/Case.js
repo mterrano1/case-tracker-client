@@ -19,10 +19,15 @@ import { Grid, Box } from "@mui/material";
 const Case = () => {
     const { id } = useParams();
     const {user, userCases} = useContext(UserContext);
+    const [commentResponse, setCommentResponse] = useState(false);
     const [newComment, setNewComment] = useState('');
+
+
     const addComment = (comment) => {
         setNewComment(comment)
     }
+
+
     const filterCase = userCases.filter(userCase => userCase.id === parseInt(id))
     const displayedCases = filterCase.map(displayedCase => (
         <Container component="main" maxWidth="xs" key={displayedCase.id}>
@@ -51,11 +56,14 @@ const Case = () => {
               </Typography><br/><br/>
               <Typography variant="body2">
                 {displayedCase.allegation}
-            </Typography><br/>
-            <Comments caseId={displayedCase.id} newComment={newComment} />
+              </Typography><br/>
+                <Comments caseId={displayedCase.id} newComment={newComment} setCommentResponse={setCommentResponse} commentResponse={commentResponse} />
               <Box componenet={CardActions} >
                 <Grid item xs={12}>
-                  <CommentForm caseId={displayedCase.id} user={user} addComment={addComment} />
+                  {commentResponse ?
+                  <CommentForm caseId={displayedCase.id} user={user} addComment={addComment} /> :
+                  ''
+                  }
                 </Grid>
                 <Grid container spacing={1}>
                   <Grid item xs={12}>

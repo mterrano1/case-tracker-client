@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Comments = ( {caseId, newComment} ) => {
+const Comments = ({ caseId, newComment, setCommentResponse, commentResponse }) => {
     const [comments, setComments] = useState('');
     const token = localStorage.getItem("token");
 
@@ -9,7 +9,14 @@ const Comments = ( {caseId, newComment} ) => {
             headers: {"Authorization": token}
         })
         .then(r => r.json())
-        .then(data => setComments(data))
+        .then((data) => {
+            if (!data.errors){
+                setComments(data)
+                setCommentResponse(true)
+            } else {
+                setCommentResponse(false)
+            }
+        })
     }, [newComment]);
 
     const commentList = comments ?
@@ -17,7 +24,9 @@ const Comments = ( {caseId, newComment} ) => {
                         ''
 
     return (
-        <ul>{commentList}</ul>
+        <ul>
+            {commentResponse ? commentList : ''}
+        </ul>
     )
 }
 
