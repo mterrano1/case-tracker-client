@@ -1,10 +1,11 @@
 import React from "react";
 import { Doughnut } from 'react-chartjs-2';
+import Switch from '@mui/material/Switch';
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const CaseDepartmentStats = ({ allCases }) => {
+const CaseDepartmentStats = ({ allCases, checked, onChange }) => {
   const theme = useTheme();
   if (!allCases) return null;
   
@@ -13,6 +14,10 @@ const CaseDepartmentStats = ({ allCases }) => {
     acc[key] = Math.round(allCases[key] / total * 100);
     return acc;
   }, {});
+
+  const handleChange = (e) => {
+    onChange(e.target.checked)
+  }
   
   const remainingPercentage = 100 - Object.values(percentages).reduce((acc, val) => acc + val, 0);
   
@@ -85,6 +90,7 @@ const CaseDepartmentStats = ({ allCases }) => {
 
   return (
     <Card>
+      <Switch checked={checked} onChange={handleChange} />
       <CardHeader title="Allegations by Department" style={{textAlign: "center"}} />
       <Divider />
       <CardContent>

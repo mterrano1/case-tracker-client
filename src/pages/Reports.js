@@ -7,6 +7,7 @@ const Reports = () => {
     const {user, loggedIn} = useContext(UserContext);
     const [allCases, setAllCases] = useState({});
     const token = localStorage.getItem("token");
+    const [checked, setChecked] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:3000/cases', {
@@ -23,10 +24,10 @@ const Reports = () => {
     } else if (loggedIn && user.role === 'Manager') {
         return (
             <div>
-            {/* <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}> */}
-                {/* <CaseTypeStats allCases={allCases.cases_by_allegation_type} /> */}
-                {/* <div style={{ width: '20px' }} /> */}
-                <CaseDepartmentStats allCases={allCases.cases_by_department} />
+                {checked ?
+                <CaseDepartmentStats checked={checked} allCases={allCases.cases_by_department} onChange={setChecked} /> :
+                <CaseTypeStats checked={checked} allCases={allCases.cases_by_allegation_type} onChange={setChecked} />
+                }
             </div>
         )
     } else {
