@@ -45,6 +45,7 @@ const Signup = () => {
         password_confirmation: ''     
     });
 
+    // Handles form submission and sends POST request to register new user
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('http://localhost:3000/signup', {
@@ -68,6 +69,7 @@ const Signup = () => {
         })
     }
 
+    // Handles change event for form inputs
     const handleChange = (e) => {
         setNewUser({
             ...newUser, [e.target.name]: e.target.value

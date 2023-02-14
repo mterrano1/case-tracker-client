@@ -5,20 +5,24 @@ import { Paper, Table, TableBody, TableHead, TableRow, TableCell, Pagination, Bo
 
 const UnassignedCases = () => {
   const { loggedIn, userCases } = useContext(UserContext);
+
+  // Filter out all cases that are not open or closed so we're left with 'Unassigned' cases only
   const filterCases = userCases.filter(userCase => userCase.status !== 'Closed' && userCase.status !== 'Open');
+
+  // Configure pagination
   const [page, setPage] = useState(1);
   const [casesPerPage] = useState(5);
-
   const indexOfLastCase = page * casesPerPage;
   const indexOfFirstCase = indexOfLastCase - casesPerPage;
   const currentCases = filterCases.slice(indexOfFirstCase, indexOfLastCase);
-
   const pagCount = Math.ceil(filterCases.length / 5)
 
+  // Handle page change
   const handleChange = (event, value) => {
     setPage(value);
   };
 
+  // If user is logged in, display cases
   if (loggedIn) {
     return (
       <div>
@@ -48,6 +52,7 @@ const UnassignedCases = () => {
       </div>
     );
   } else {
+    // If user is not logged in, display "Unauthorized"
     return (
         <h3>Unauthorized</h3>
         );

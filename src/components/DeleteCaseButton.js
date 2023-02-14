@@ -10,30 +10,37 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 const DeleteCaseButton = ({ caseId }) => {
     const { handleDeleteCase } = useContext(UserContext);
+    // State hook that determines whether the confirmation dialog is open or not
     const [open, setOpen] = React.useState(false);
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
 
+    // Opens the confirmation dialog
     const handleClickOpen = () => {
         setOpen(true);
     };
-    
+ 
+    // Closes the confirmation dialog
     const handleClose = () => {
         setOpen(false);
     };
 
+    // DELETE the case with the specified caseId
     const deleteCase = () => {
         fetch(`http://localhost:3000/cases/${caseId}`, {
             method: "DELETE",
             headers: {"Authorization": token}
         })
         .then(() => {
+          // Remove the case from the user's cases list then closes the confirmation dialog and navigates to the Cases page
             handleDeleteCase(caseId)
             setOpen(false);
             navigate('/Cases')
         })
     }
 
+    // Button triggers the confirmation dialog 
+    // Dialog includes a message and two buttons to either confirm or cancel the deletion
     return (
         <div>
       <Button size="small" variant="contained" onClick={handleClickOpen}>

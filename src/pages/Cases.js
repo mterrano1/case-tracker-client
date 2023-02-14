@@ -5,16 +5,19 @@ import { Paper, Table, TableBody, TableHead, TableRow, TableCell, Pagination } f
 
 const Cases = () => {
   const { loggedIn, userCases } = useContext(UserContext);
+
+  // Filter out closed and unassigned cases so we're left with 'Open' cases only
   const filterCases = userCases.filter(userCase => userCase.status !== 'Closed' && userCase.status !== 'Unassigned');
+
+  // Configure pagination
   const [page, setPage] = useState(1);
   const [casesPerPage] = useState(5);
-
   const indexOfLastCase = page * casesPerPage;
   const indexOfFirstCase = indexOfLastCase - casesPerPage;
   const currentCases = filterCases.slice(indexOfFirstCase, indexOfLastCase);
-
   const pagCount = Math.ceil(filterCases.length / 5)
 
+  // Handle page change
   const handleChange = (event, value) => {
     setPage(value);
   };

@@ -18,6 +18,7 @@ const CaseAssignmentForm = ({ caseId }) => {
     assigned_employee_id: "",
   });
 
+    // Fetch list of users from the backend API when the component mounts
     useEffect(() => {
         fetch('http://localhost:3000/users', {
           headers: {"Authorization": token}
@@ -26,12 +27,14 @@ const CaseAssignmentForm = ({ caseId }) => {
         .then(data => setuserList(data))
     }, [token]);
 
+  // Update the caseAssignment state variable when the user selects a new user
   const handleChange = (e) => {
     setCaseAssignment({
         ...caseAssignment, [e.target.name]: e.target.value,
     });
   };
 
+  // Submit the form to create a new case assignment
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch("http://localhost:3000/case_assignments", {
@@ -45,9 +48,11 @@ const CaseAssignmentForm = ({ caseId }) => {
       .then(r => r.json())
       .then(data => {
         if (!data.errors) {
+          // Update the user's case status and navigate to the manager dashboard
           handleCaseStatusUpdate(data.assigned_case_id)
           navigate('/managerdashboard')
         } else {
+            // Set the errorsList state variable with a list of error messages
             const errors = data.errors.map(e => <li>{e}</li>)
             setErrorsList(errors)
         }

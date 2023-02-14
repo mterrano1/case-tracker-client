@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+// Create a new context
 const UserContext = React.createContext();
 
+// Provider component that will be used to wrap other components
 const UserProvider = (props) => {
     const [user, setUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
@@ -9,21 +11,23 @@ const UserProvider = (props) => {
     const [updateCaseStatus, setUpdateCaseStatus] = useState('');
     const token = localStorage.getItem("token");
 
-useEffect(() => {
-    fetch('http://localhost:3000/me', {
-        headers: {"Authorization": token}
-    })
-    .then(r => r.json())
-    .then(data => {
-        if (!data.errors){
-            setLoggedIn(true)
-            setUser(data)
-            setUserCases(data.assigned_cases)
-        } else {
-            setLoggedIn(false)
-        }
-    })
-}, [token, closeCase, updateCaseStatus]);
+    // Fetch user data from the server when the component mounts or 
+    // the token, closeCase, or updateCaseStatus variables change
+    useEffect(() => {
+        fetch('http://localhost:3000/me', {
+            headers: {"Authorization": token}
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (!data.errors){
+                setLoggedIn(true)
+                setUser(data)
+                setUserCases(data.assigned_cases)
+            } else {
+                setLoggedIn(false)
+            }
+        })
+    }, [token, closeCase, updateCaseStatus]);
 
     const signup = (user) => {
         setUser(user)
@@ -55,6 +59,7 @@ useEffect(() => {
         setCloseCase(closedCase)
     }
 
+    // Pass the state variables and functions down to child components via the context provider
     return (
         <UserContext.Provider value={{
             user,
@@ -71,5 +76,5 @@ useEffect(() => {
         </UserContext.Provider>
     )
 }
-
+// Export the context and provider components so they can be used in other parts of the application
 export { UserProvider, UserContext }

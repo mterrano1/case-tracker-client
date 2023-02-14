@@ -3,27 +3,30 @@ import { Doughnut } from 'react-chartjs-2';
 import Switch from '@mui/material/Switch';
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+// Register the chart.js plugins for the chart type and options
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CaseDepartmentStats = ({ allCases, checked, onChange }) => {
   const theme = useTheme();
   if (!allCases) return null;
   
+  // Calculate the total number of cases and the percentage breakdown by department
   const total = Object.values(allCases).reduce((acc, val) => acc + val, 0);
   const percentages = Object.keys(allCases).reduce((acc, key) => {
     acc[key] = Math.round(allCases[key] / total * 100);
     return acc;
   }, {});
+  
+  // Calculate the remaining percentage and add it to the last department
+  const remainingPercentage = 100 - Object.values(percentages).reduce((acc, val) => acc + val, 0);
+  percentages[Object.keys(percentages)[Object.keys(percentages).length - 1]] += remainingPercentage;
+  // Convert the percentages object to an array of values
+  const percentValues = Object.values(percentages);
 
+  // Change the switch's value when it is toggled
   const handleChange = (e) => {
     onChange(e.target.checked)
   }
-  
-  const remainingPercentage = 100 - Object.values(percentages).reduce((acc, val) => acc + val, 0);
-  
-  percentages[Object.keys(percentages)[Object.keys(percentages).length - 1]] += remainingPercentage;
-
-  const percentValues = Object.values(percentages);
 
   const data = {
     datasets: [
@@ -60,6 +63,7 @@ const CaseDepartmentStats = ({ allCases, checked, onChange }) => {
     }
   };
 
+  // Define the devices array for displaying the department breakdown
   const devices = [
     {
       title: 'Business Banking',
@@ -88,6 +92,7 @@ const CaseDepartmentStats = ({ allCases, checked, onChange }) => {
     }
   ];
 
+  // Displays a chart of allegations by department
   return (
     <Card>
       <Switch checked={checked} onChange={handleChange} />

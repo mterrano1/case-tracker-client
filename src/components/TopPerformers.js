@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Bar } from 'react-chartjs-2';
 import { Box, Card, CardContent, CardHeader, Divider, useTheme } from '@mui/material';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+// Register the chart.js plugins for the chart type and options
 ChartJS.register(CategoryScale, LinearScale, BarElement)
 
 
@@ -10,6 +11,7 @@ const TopPerformers = () => {
   const [userList, setuserList] = useState([]);
   const token = localStorage.getItem("token");
 
+  // Retrieves the user data from the backend on component mount
   useEffect(() => {
       fetch('http://localhost:3000/users', {
           headers: {
@@ -21,9 +23,14 @@ const TopPerformers = () => {
       .then(data => setuserList(data))
   }, []);
 
+    // If the userList is null, don't render the component
     if (!userList) return null;
+
+    // Sort the userList based on the closed case count in descending order
     const sortedArray = userList.sort((a, b) => b.closed_case_count - a.closed_case_count);
+    // Get the top five performers from the sorted array
     const topFive = sortedArray.slice(0, 5);
+    // Extract the closed and open case counts and top names from the top performers
     const closedCaseCounts = topFive.map(object => object.closed_case_count);
     const openCaseCounts = topFive.map(object => object.open_case_count);
     const topNames = topFive.map(object => object.first_name + " " + object.last_name);
@@ -103,6 +110,7 @@ const TopPerformers = () => {
     }
   };
 
+  // Displays a card with a bar chart showing the top 5 performers based on the number of closed cases
   return (
     <Card>
       <CardHeader title="Top 5 Performers" style={{textAlign: "center"}} />

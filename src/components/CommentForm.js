@@ -13,6 +13,7 @@ const CommentForm = ({ caseId, user, addComment }) => {
         comment: ''    
     }); 
 
+    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
             fetch(`http://localhost:5000/comments/${caseId}`, {
@@ -26,22 +27,25 @@ const CommentForm = ({ caseId, user, addComment }) => {
         .then(r => r.json())
         .then(data => {
             if (!data.errors) {
+                // If there are no errors, add comment and hide comment input field after 
                 addComment(data)
                 setShowTextField(false)
             } else {
+                // If there are errors, display them to the user
                 const errors = data.errors.map(e => <li>{e}</li>)
                 setErrorsList(errors)
             }
         })
     }
 
+    // Update state when input fields change
     const handleChange = (e) => {
         setNewComment({
             ...newComment, [e.target.name]: e.target.value
         })
     }
 
-
+    // Displays text field to add comment if User clicks on Button, hides text field after user submits or cancels
     return (
         <div>
             <Button size="small" variant="contained" onClick={() => setShowTextField(!showTextField)}>

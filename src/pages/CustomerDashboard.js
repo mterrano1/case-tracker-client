@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+// Display copyright information
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -40,6 +41,7 @@ const CustomerDashboard = () => {
     });
     const navigate = useNavigate();
 
+    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('http://localhost:3000/cases', {
@@ -52,15 +54,18 @@ const CustomerDashboard = () => {
         })
         .then(r => r.json())
         .then(data => {
+            // If there are no errors, navigate back to the home page
             if (!data.errors) {
                 navigate('/')
             } else {
+                // Otherwise, display the error messages
                 const errorsLis = data.errors.map(e => <li key={e.id}>{e}</li>)
                 setErrorsList(errorsLis)
             }
         })
     };
 
+    // Handle changes to the form inputs
     const handleChange = (e) => {
         setNewCase({
             ...newCase, [e.target.name]: e.target.value

@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+// Display copyright information
 function Copyright(props) {
     return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -35,6 +36,7 @@ const Login = () => {
     const { user, login } = useContext(UserContext);
     const navigate = useNavigate();
 
+    // Submit function for login form
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('http://localhost:3000/login', {
@@ -45,10 +47,13 @@ const Login = () => {
         .then(r => r.json())
         .then(data => {
             if (!data.error){
+                // If there are no errors, set Token for user, pass user data to login
+                // callback function, and navigate to home page
                 localStorage.setItem("token", data.token);
                 login(data.user)
                 navigate('/')
             } else {
+                // If there are errors, display them and erase text in input fields
                 setUsername('')
                 setPassword('')
                 setErrors(data.error)

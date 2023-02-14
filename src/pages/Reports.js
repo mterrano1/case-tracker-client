@@ -7,8 +7,10 @@ const Reports = () => {
     const {user, loggedIn} = useContext(UserContext);
     const [allCases, setAllCases] = useState({});
     const token = localStorage.getItem("token");
+    // Set initial state for checked (for toggling between department and type stats)
     const [checked, setChecked] = useState(true);
 
+    // Fetch all cases from API
     useEffect(() => {
         fetch('http://localhost:3000/cases', {
             headers: {"Authorization": token}
@@ -17,11 +19,14 @@ const Reports = () => {
         .then(data => setAllCases(data))
     }, []);
 
+    // Render component based on user role and login status
     if (!allCases) {
+        // Display loading message while cases are being fetched
         return (
             <h1>Loading...</h1>
         )
     } else if (loggedIn && user.role === 'Manager') {
+        // Display case department stats or case type stats based on checked state
         return (
             <div>
                 {checked ?
@@ -31,6 +36,7 @@ const Reports = () => {
             </div>
         )
     } else {
+        // Display "Unauthorized" message if user is not a manager
         return (
             <h3>Unauthorized</h3>
         )

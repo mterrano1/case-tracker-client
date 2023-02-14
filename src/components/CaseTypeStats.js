@@ -3,27 +3,31 @@ import { Doughnut } from 'react-chartjs-2';
 import Switch from '@mui/material/Switch';
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+// Register the chart.js plugins for the chart type and options
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CaseTypeStats = ({ allCases, checked, onChange }) => {
   const theme = useTheme();
   if (!allCases) return null;
   
+  // Calculate the percentages of each case type
   const total = Object.values(allCases).reduce((acc, val) => acc + val, 0);
   const percentages = Object.keys(allCases).reduce((acc, key) => {
     acc[key] = Math.round(allCases[key] / total * 100);
     return acc;
   }, {});
+  
+  // Calculate the remaining percentage and add it to the last case type
+  const remainingPercentage = 100 - Object.values(percentages).reduce((acc, val) => acc + val, 0);
+  percentages[Object.keys(percentages)[Object.keys(percentages).length - 1]] += remainingPercentage;
 
+  // Get an array of the percentage values
+  const percentValues = Object.values(percentages);
+
+  // Change the switch's value when it is toggled
   const handleChange = (e) => {
     onChange(e.target.checked)
   }
-  
-  const remainingPercentage = 100 - Object.values(percentages).reduce((acc, val) => acc + val, 0);
-  
-  percentages[Object.keys(percentages)[Object.keys(percentages).length - 1]] += remainingPercentage;
-
-  const percentValues = Object.values(percentages);
 
   const data = {
     datasets: [
@@ -60,6 +64,7 @@ const CaseTypeStats = ({ allCases, checked, onChange }) => {
     }
   };
 
+  // Create an array of objects containing the percentage values and colors for each case type
   const devices = [
     {
       title: 'Customer Service',
@@ -83,6 +88,7 @@ const CaseTypeStats = ({ allCases, checked, onChange }) => {
     }
   ];
 
+  // Displays a chart of allegations by stats
   return (
     <Card>
       <Switch checked={checked} onChange={handleChange} />

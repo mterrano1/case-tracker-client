@@ -7,6 +7,7 @@ import Link from '@mui/material/Button';
 const Home = () => {
     const {user, loggedIn} = useContext(UserContext);
 
+    // If user is a Manager, display Manager Dashboard link
     if (loggedIn && user.role === 'Manager') {
 
         return (
@@ -17,6 +18,7 @@ const Home = () => {
                 </Link>
             </div>
         )
+    // If user is a Researcher, display Cases link
     } else if (loggedIn && user.role === 'Researcher') {
         return (
             <div style={styles.container}>
@@ -26,6 +28,7 @@ const Home = () => {
                 </Link>
             </div>
         )
+    // If user is a Customer, display File a Complaint link
     } else if (loggedIn && user.role === 'Customer') {
         return (
             <div style={styles.container}>
@@ -35,6 +38,7 @@ const Home = () => {
                 </Link>
             </div>
         )
+    // If no user is logged in, display a message asking to login or signup
     } else {
         return (
             <div>
@@ -46,6 +50,7 @@ const Home = () => {
 
 export default Home;
 
+// Styles for the Home component
 const styles = {
     container: {
       display: "flex",

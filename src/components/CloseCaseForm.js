@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 const CloseCaseForm = ({ caseId }) => {
+    // Define state variables for managing the form and getting data from the UserContext
     const [showTextField, setShowTextField] = useState(false);
     const [resolution, setResolution] = useState('');
     const { handleCaseStatusUpdate, handleCloseCase } = useContext(UserContext);
@@ -12,6 +13,7 @@ const CloseCaseForm = ({ caseId }) => {
     const [errorsList, setErrorsList] = useState([]); 
     const token = localStorage.getItem("token");
 
+    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch(`http://localhost:3000/cases/${caseId}`, {
@@ -28,10 +30,12 @@ const CloseCaseForm = ({ caseId }) => {
         .then(r => r.json())
         .then(data => {
             if (!data.errors) {
+                // If there are no errors, update the case status and navigate to the cases page
                 handleCloseCase(data)
                 handleCaseStatusUpdate(data)
                 navigate('/cases')
             } else {
+                // If there are errors, display them to the user
                 const errorsLis = data.errors.map(e => <li key={e.id}>{e}</li>)
                 setErrorsList(errorsLis)
             }

@@ -17,6 +17,7 @@ import { Grid, Box } from "@mui/material";
 
 
 const Case = () => {
+    // Get the case ID from the URL
     const { id } = useParams();
     const {user, userCases} = useContext(UserContext);
     const [commentResponse, setCommentResponse] = useState(false);
@@ -27,7 +28,7 @@ const Case = () => {
         setNewComment(comment)
     }
 
-
+    // Filter the cases to display the one with the matching ID
     const filterCase = userCases.filter(userCase => userCase.id === parseInt(id))
     const displayedCases = filterCase.map(displayedCase => (
         <Container component="main" maxWidth="xs" key={displayedCase.id}>
@@ -65,6 +66,7 @@ const Case = () => {
                   ''
                   }
                 </Grid>
+                {/* Render the appropriate buttons based on user role and case status */}
                 <Grid container spacing={1}>
                   <Grid item xs={12}>
                     {user.role === 'Manager' && displayedCase.status === "Unassigned" ?
