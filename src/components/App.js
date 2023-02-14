@@ -10,7 +10,6 @@ import ManagerDashboard from '../pages/ManagerDashboard';
 import CustomerDashboard from '../pages/CustomerDashboard';
 import Cases from '../pages/Cases';
 import Case from '../pages/Case';
-import Reports from '../pages/Reports';
 
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
         <Route exact path='/managerdashboard' element={<ManagerDashboard />} />
         <Route exact path='/customerdashboard' element={<CustomerDashboard />} />
         <Route exact path='/cases' element={<Cases />} />
-        <Route exact path='/reports' element={<Reports />} />
         <Route exact path='/cases/:id' element={<Case />} />
         <Route exact path='/signup' element={<Signup />} />
         <Route exact path='/login' element={<Login />} />

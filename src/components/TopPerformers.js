@@ -1,14 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from '../components/UserContext';
+import React, { useEffect, useState } from "react";
 import { Bar } from 'react-chartjs-2';
-import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Divider, useTheme } from '@mui/material';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, BarElement)
 
 
 const TopPerformers = () => {
   const theme = useTheme();
-  const {user, loggedIn} = useContext(UserContext);
   const [userList, setuserList] = useState([]);
   const token = localStorage.getItem("token");
 
@@ -112,7 +110,7 @@ const TopPerformers = () => {
       <CardContent>
         <Box
           sx={{
-            height: 400,
+            height: 280,
             position: 'relative'
           }}
         >

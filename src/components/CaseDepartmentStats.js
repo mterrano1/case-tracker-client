@@ -90,7 +90,7 @@ const CaseDepartmentStats = ({ allCases }) => {
       <CardContent>
         <Box
           sx={{
-            height: 300,
+            height: 600,
             position: 'relative'
           }}
         >

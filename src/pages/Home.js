@@ -15,9 +15,6 @@ const Home = () => {
                 <Link to={'/managerdashboard'} component={RouterLink}>
                     <Button variant="contained">My Dashboard</Button>
                 </Link>
-                <Link to={'/reports'} component={RouterLink}>
-                    <Button variant="contained">Reports</Button>
-                </Link>
             </div>
         )
     } else if (loggedIn && user.role === 'Researcher') {

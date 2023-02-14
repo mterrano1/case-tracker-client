@@ -34,12 +34,6 @@ function NavBar() {
         </Link> :
         ''
 
-    const reportsLink = token && user.role === 'Manager' && user ?
-        <Link exact="true" to='/reports' component={NavLink}>
-            <Button sx={{ my: 2, color: 'white', display: 'block' }}>Reports</Button>
-        </Link> :
-        ''
-
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -48,7 +42,6 @@ function NavBar() {
             {homeLink}
             {dashboardLink}
             {casesLink}
-            {reportsLink}
           </Box>
           <Box sx={{ display: { xs: "none", md: "flex" }, marginLeft: "auto" }}>
             {loginLogoutButton}

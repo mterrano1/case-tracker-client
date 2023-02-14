@@ -22,9 +22,10 @@ const Reports = () => {
         )
     } else if (loggedIn && user.role === 'Manager') {
         return (
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: '20px' }}>
-                <CaseTypeStats allCases={allCases.cases_by_allegation_type} />
-                <div style={{ width: '20px' }} />
+            <div>
+            {/* <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}> */}
+                {/* <CaseTypeStats allCases={allCases.cases_by_allegation_type} /> */}
+                {/* <div style={{ width: '20px' }} /> */}
                 <CaseDepartmentStats allCases={allCases.cases_by_department} />
             </div>
         )

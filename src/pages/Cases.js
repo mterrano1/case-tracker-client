@@ -4,8 +4,8 @@ import CaseCard from '../components/CaseCard';
 import { Paper, Table, TableBody, TableHead, TableRow, TableCell, Pagination } from '@mui/material/';
 
 const Cases = () => {
-  const { loggedIn, userCases, user } = useContext(UserContext);
-  const filterCases = userCases.filter(userCase => userCase.status !== 'Closed');
+  const { loggedIn, userCases } = useContext(UserContext);
+  const filterCases = userCases.filter(userCase => userCase.status !== 'Closed' && userCase.status !== 'Unassigned');
   const [page, setPage] = useState(1);
   const [casesPerPage] = useState(5);
 
