@@ -12,7 +12,7 @@ const Reports = () => {
 
     // Fetch all cases from API
     useEffect(() => {
-        fetch('http://localhost:3000/cases', {
+        fetch('http://rails-service:3000/cases', {
             headers: {"Authorization": token}
         })
         .then(r => r.json())

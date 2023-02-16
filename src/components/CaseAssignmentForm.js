@@ -20,7 +20,7 @@ const CaseAssignmentForm = ({ caseId }) => {
 
     // Fetch list of users from the backend API when the component mounts
     useEffect(() => {
-        fetch('http://localhost:3000/users', {
+        fetch('http://rails-service:3000/users', {
           headers: {"Authorization": token}
       })
         .then(r => r.json())
@@ -37,7 +37,7 @@ const CaseAssignmentForm = ({ caseId }) => {
   // Submit the form to create a new case assignment
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/case_assignments", {
+    fetch("http://rails-service:3000/case_assignments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

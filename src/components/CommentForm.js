@@ -16,7 +16,7 @@ const CommentForm = ({ caseId, user, addComment }) => {
     // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-            fetch(`http://localhost:5000/comments/${caseId}`, {
+            fetch(`http://flask-service:5000/comments/${caseId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

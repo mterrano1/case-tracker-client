@@ -6,7 +6,7 @@ const Comments = ({ caseId, newComment, setCommentResponse, commentResponse }) =
 
     // Fetches comments from the server when the component mounts or new comments are added
     useEffect(() => {
-        fetch(`http://localhost:5000/comments/${caseId}`, {
+        fetch(`http://flask-service:5000/comments/${caseId}`, {
             headers: {"Authorization": token}
         })
         .then(r => r.json())

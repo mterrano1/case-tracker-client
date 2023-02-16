@@ -44,7 +44,7 @@ const CustomerDashboard = () => {
     // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/cases', {
+        fetch('http://rails-service:3000/cases', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

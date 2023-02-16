@@ -13,7 +13,7 @@ const TopPerformers = () => {
 
   // Retrieves the user data from the backend on component mount
   useEffect(() => {
-      fetch('http://localhost:3000/users', {
+      fetch('http://rails-service:3000/users', {
           headers: {
               "Content-Type": "application/json",
               "Authorization": token

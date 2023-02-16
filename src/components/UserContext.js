@@ -14,7 +14,7 @@ const UserProvider = (props) => {
     // Fetch user data from the server when the component mounts or 
     // the token, closeCase, or updateCaseStatus variables change
     useEffect(() => {
-        fetch('http://localhost:3000/me', {
+        fetch('http://rails-service:3000/me', {
             headers: {"Authorization": token}
         })
         .then(r => r.json())
