@@ -27,7 +27,7 @@ const DeleteCaseButton = ({ caseId }) => {
 
     // DELETE the case with the specified caseId
     const deleteCase = () => {
-        fetch(`http://rails-service:3000/cases/${caseId}`, {
+        fetch(`/rails/cases/${caseId}`, {
             method: "DELETE",
             headers: {"Authorization": token}
         })

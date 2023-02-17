@@ -16,7 +16,7 @@ const CloseCaseForm = ({ caseId }) => {
     // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://rails-service:3000/cases/${caseId}`, {
+        fetch(`/rails/cases/${caseId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

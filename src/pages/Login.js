@@ -39,7 +39,7 @@ const Login = () => {
     // Submit function for login form
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://rails-service:3000/login', {
+        fetch('/rails/login', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({username, password}), 

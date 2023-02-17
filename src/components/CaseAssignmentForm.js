@@ -18,14 +18,14 @@ const CaseAssignmentForm = ({ caseId }) => {
     assigned_employee_id: "",
   });
 
-    // Fetch list of users from the backend API when the component mounts
-    useEffect(() => {
-        fetch('http://rails-service:3000/users', {
-          headers: {"Authorization": token}
-      })
-        .then(r => r.json())
-        .then(data => setuserList(data))
-    }, [token]);
+  // Fetch list of users from the backend API when the component mounts
+  useEffect(() => {
+      fetch('/rails/users', {
+        headers: {"Authorization": token}
+    })
+      .then(r => r.json())
+      .then(data => setuserList(data))
+  }, [token]);
 
   // Update the caseAssignment state variable when the user selects a new user
   const handleChange = (e) => {
@@ -37,7 +37,7 @@ const CaseAssignmentForm = ({ caseId }) => {
   // Submit the form to create a new case assignment
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://rails-service:3000/case_assignments", {
+    fetch("/rails/case_assignments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

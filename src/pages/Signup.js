@@ -48,7 +48,7 @@ const Signup = () => {
     // Handles form submission and sends POST request to register new user
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://rails-service:3000/signup', {
+        fetch('/rails/signup', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
