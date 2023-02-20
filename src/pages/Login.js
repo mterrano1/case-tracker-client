@@ -33,7 +33,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState('');
-    const { user, login } = useContext(UserContext);
+    const { login, handleUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     // Submit function for login form
@@ -51,6 +51,7 @@ const Login = () => {
                 // callback function, and navigate to home page
                 localStorage.setItem("token", data.token);
                 login(data.user)
+                handleUser(data.user)
                 navigate('/')
             } else {
                 // If there are errors, display them and erase text in input fields

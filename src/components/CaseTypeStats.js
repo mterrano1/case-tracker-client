@@ -23,6 +23,8 @@ const CaseTypeStats = ({ allCases, checked, onChange }) => {
 
   // Get an array of the percentage values
   const percentValues = Object.values(percentages);
+  // Get an array of the percentage keys
+  const percentKeys = Object.keys(percentages)
 
   // Change the switch's value when it is toggled
   const handleChange = (e) => {
@@ -39,7 +41,7 @@ const CaseTypeStats = ({ allCases, checked, onChange }) => {
         hoverBorderColor: '#FFFFFF'
       }
     ],
-    labels: ['Customer Service', 'Fees', 'Discrimination', 'Unauthorized Account']
+    labels: percentKeys
   };
 
   const options = {
@@ -67,22 +69,22 @@ const CaseTypeStats = ({ allCases, checked, onChange }) => {
   // Create an array of objects containing the percentage values and colors for each case type
   const devices = [
     {
-      title: 'Customer Service',
+      title: percentKeys[0],
       value: percentValues[0],
       color: '#3F51B5'
     },
     {
-      title: 'Fees',
+      title: percentKeys[1],
       value: percentValues[1],
       color: '#E53935'
     },
     {
-      title: 'Discrimination',
+      title: percentKeys[2],
       value: percentValues[2],
       color: '#FB8C00'
     },
     {
-      title: 'Unauthorized Account',
+      title: percentKeys[3],
       value: percentValues[3],
       color: '#1E88E5'
     }

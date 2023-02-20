@@ -32,7 +32,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 const Signup = () => {
-    const { signup } = useContext(UserContext);
+    const { signup, handleUser } = useContext(UserContext);
     const navigate = useNavigate();
     const [errorsList, setErrorsList] = useState([]);
     const token = localStorage.getItem("token");
@@ -61,6 +61,7 @@ const Signup = () => {
             if (!user.errors) {
                 localStorage.setItem("token", user.token);
                 signup(user)
+                handleUser(user)
                 navigate('/')
             } else {
                 const errors = user.errors.map(e => <li>{e}</li>)

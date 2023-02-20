@@ -17,8 +17,8 @@ function NavBar() {
     // Conditional rendering that displays either the LogoutButton or the LoginButton depending on the presence of the token
     const loginLogoutButton = token ? <LogoutButton /> : <LoginButton />
 
-    // Conditional rendering that displays a home link if the user is logged in and not a customer
-    const homeLink = token && user.role !== 'Customer' ?
+    // Conditional rendering that displays a home link if the user is logged in and is a manager
+    const homeLink = token && user.role === 'Manager' ?
         <Link to={'/'} component={NavLink}>
             <Button sx={{ my: 2, color: 'white', display: 'block' }}>Home</Button>
         </Link> :

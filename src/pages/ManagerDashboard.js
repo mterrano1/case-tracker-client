@@ -1,21 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from '../components/UserContext';
 import { Grid, Box } from "@mui/material";
 import TopPerformers from '../components/TopPerformers';
 import UnassignedCases from '../components/UnassignedCases';
-import Reports from './Reports';
+import CaseTypeStats from '../components/CaseTypeStats';
+import CaseDepartmentStats from '../components/CaseDepartmentStats';
 
 const ManagerDashboard =() => {
   const {user, loggedIn} = useContext(UserContext);
+  const [allCases, setAllCases] = useState({});
+  const [checked, setChecked] = useState(true);
+  const token = localStorage.getItem("token");
 
-  if (loggedIn && user.role === 'Manager') {
+  // Fetch all cases from API
+  useEffect(() => {
+    fetch('/rails/cases', {
+        headers: {"Authorization": token}
+    })
+    .then(r => r.json())
+    .then(data => setAllCases(data))
+  }, []);
+
+  // Render component based on user role and login status
+  if (!allCases) {
+    // Display loading message while cases are being fetched
+    return (
+        <h1>Loading...</h1>
+    )
+} else if (loggedIn && user.role === 'Manager') {
     return (
       <Box sx={{ p: 4}}>
         <Grid container spacing={5}>
           <Grid item xs={12}>
             <Grid container spacing={5}>
               <Grid item sm={5} xs={12}>
-                <Reports />
+                {checked ?
+                  <CaseDepartmentStats checked={checked} allCases={allCases.cases_by_department} onChange={setChecked} /> :
+                  <CaseTypeStats checked={checked} allCases={allCases.cases_by_allegation_type} onChange={setChecked} />
+                }
               </Grid>
               <Grid item xs={7}>
                 <Grid container spacing={5}>

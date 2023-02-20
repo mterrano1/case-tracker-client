@@ -7,6 +7,7 @@ const UserProvider = (props) => {
     const [user, setUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false);
     const [userCases, setUserCases] = useState([]);
+    const [newUser, setNewUser] = useState({});
     const [closeCase, setCloseCase] = useState('');
     const [updateCaseStatus, setUpdateCaseStatus] = useState('');
     const token = localStorage.getItem("token");
@@ -27,7 +28,7 @@ const UserProvider = (props) => {
                 setLoggedIn(false)
             }
         })
-    }, [token, closeCase, updateCaseStatus]);
+    }, [newUser, closeCase, updateCaseStatus]);
 
     const signup = (user) => {
         setUser(user)
@@ -43,6 +44,10 @@ const UserProvider = (props) => {
     const logout = () => {
         setUser({})
         setLoggedIn(false)
+    }
+
+    const handleUser = (user) => {
+        setNewUser(user)
     }
 
     const handleDeleteCase = (deletedCaseId) => {
@@ -70,7 +75,8 @@ const UserProvider = (props) => {
             userCases,
             handleDeleteCase,
             handleCaseStatusUpdate,
-            handleCloseCase
+            handleCloseCase,
+            handleUser
         }}>
             {props.children}
         </UserContext.Provider>

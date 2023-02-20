@@ -22,6 +22,7 @@ const CaseDepartmentStats = ({ allCases, checked, onChange }) => {
   percentages[Object.keys(percentages)[Object.keys(percentages).length - 1]] += remainingPercentage;
   // Convert the percentages object to an array of values
   const percentValues = Object.values(percentages);
+  const percentKeys = Object.keys(percentages)
 
   // Change the switch's value when it is toggled
   const handleChange = (e) => {
@@ -38,7 +39,7 @@ const CaseDepartmentStats = ({ allCases, checked, onChange }) => {
         hoverBorderColor: '#FFFFFF'
       }
     ],
-    labels: ['Business Banking', 'Home Mortgage', 'Local Branch', 'Phone Bank', 'Wealth Management']
+    labels: percentKeys
   };
 
   const options = {
@@ -66,28 +67,28 @@ const CaseDepartmentStats = ({ allCases, checked, onChange }) => {
   // Define the devices array for displaying the department breakdown
   const devices = [
     {
-      title: 'Business Banking',
+      title: percentKeys[0],
       value: percentValues[0],
       color: '#3F51B5'
     },
     {
-      title: 'Home Mortgage',
+      title: percentKeys[1],
       value: percentValues[1],
       color: '#E53935'
     },
     {
-      title: 'Local Branch',
+      title: percentKeys[2],
       value: percentValues[2],
       color: '#FB8C00'
     },
     {
-      title: 'Phone Bank',
+      title: percentKeys[3],
       value: percentValues[3],
       color: '#1E88E5'
     },
     {
-      title: 'Wealth Management',
-      value: percentValues[3],
+      title: percentKeys[4],
+      value: percentValues[4],
       color: '#81C784'
     }
   ];
