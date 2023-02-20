@@ -41,8 +41,11 @@ const Home = () => {
     // If no user is logged in, display a message asking to login or signup
     } else {
         return (
-            <div>
+            <div style={styles.container}>
                 <h1>Please login or signup</h1>
+                <Link to={'/login'} component={RouterLink}>
+                    <Button variant="contained">Login</Button>
+                </Link>
             </div>
         )
     }
