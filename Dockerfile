@@ -15,6 +15,8 @@ RUN npm run build
 
 # Use the official Nginx image as the base image for serving the built application
 FROM nginx:alpine
+# Exposes port 4000
+EXPOSE 4000
 # Copy the Nginx configuration file to the container
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Copy the built application to the Nginx document root directory

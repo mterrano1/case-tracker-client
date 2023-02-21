@@ -1,8 +1,17 @@
 # Case-Tracker
 
+
+## Full project
+
+https://www.youtube.com/watch?v=cONFD37A6y8
+
+https://github.com/mterrano1/Case-Tracker-Final-Project
+
+
 ## Description
 
 This React application is designed to track cases and connect to two API's that are also containerized in a Docker container, a [Flask API](https://github.com/mterrano1/case-tracker-flask) and a [Rails API](https://github.com/mterrano1/case-tracker-backend). The links to these APIs are as follows:
+
 
 ## Running the Application
 
@@ -29,6 +38,7 @@ $ docker run -it -p 3000:3000 case-tracker:dev
 ```
 
 5. Once the Docker container is running, you can view the application by opening a web browser and navigating to http://localhost:3000.
+
 
 ## Conclusion
 

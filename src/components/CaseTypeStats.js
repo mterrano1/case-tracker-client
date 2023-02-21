@@ -20,6 +20,8 @@ const CaseTypeStats = ({ allCases, checked, onChange }) => {
   // Calculate the remaining percentage and add it to the last case type
   const remainingPercentage = 100 - Object.values(percentages).reduce((acc, val) => acc + val, 0);
   percentages[Object.keys(percentages)[Object.keys(percentages).length - 1]] += remainingPercentage;
+  const totalCases = Object.values(allCases)
+
 
   // Get an array of the percentage values
   const percentValues = Object.values(percentages);
@@ -34,7 +36,7 @@ const CaseTypeStats = ({ allCases, checked, onChange }) => {
   const data = {
     datasets: [
       {
-        data: percentValues,
+        data: totalCases,
         backgroundColor: ['#3F51B5', '#e53935', '#FB8C00', '#1E88E5'],
         borderWidth: 1,
         borderColor: '#FFFFFF',

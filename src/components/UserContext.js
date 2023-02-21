@@ -15,19 +15,22 @@ const UserProvider = (props) => {
     // Fetch user data from the server when the component mounts or 
     // the token, closeCase, or updateCaseStatus variables change
     useEffect(() => {
-        fetch('/rails/me', {
-            headers: {"Authorization": token}
-        })
-        .then(r => r.json())
-        .then(data => {
-            if (!data.errors){
-                setLoggedIn(true)
-                setUser(data)
-                setUserCases(data.assigned_cases)
-            } else {
-                setLoggedIn(false)
-            }
-        })
+        // Only run the effect on certain pages
+        if (token) {
+            fetch('/rails/me', {
+                headers: {"Authorization": token}
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (!data.errors){
+                    setLoggedIn(true)
+                    setUser(data)
+                    setUserCases(data.assigned_cases)
+                } else {
+                    setLoggedIn(false)
+                }
+            })
+        }
     }, [newUser, closeCase, updateCaseStatus]);
 
     const signup = (user) => {

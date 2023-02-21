@@ -21,6 +21,7 @@ const CaseDepartmentStats = ({ allCases, checked, onChange }) => {
   const remainingPercentage = 100 - Object.values(percentages).reduce((acc, val) => acc + val, 0);
   percentages[Object.keys(percentages)[Object.keys(percentages).length - 1]] += remainingPercentage;
   // Convert the percentages object to an array of values
+  const totalCases = Object.values(allCases)
   const percentValues = Object.values(percentages);
   const percentKeys = Object.keys(percentages)
 
@@ -32,7 +33,7 @@ const CaseDepartmentStats = ({ allCases, checked, onChange }) => {
   const data = {
     datasets: [
       {
-        data: percentValues,
+        data: totalCases,
         backgroundColor: ['#3F51B5', '#e53935', '#FB8C00', '#1E88E5', '#81C784'],
         borderWidth: 1,
         borderColor: '#FFFFFF',
